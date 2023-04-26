@@ -1,0 +1,359 @@
+@import url('http://fonts.cdnfonts.com/css/gotham-pro');
+@import url('https://fonts.cdnfonts.com/css/gotham');
+@import url('https://fonts.cdnfonts.com/css/sf-mono');
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 275px;
+    background: rgb(30, 30, 30);
+    padding: 6px 14px;
+    z-index: 2;
+    transition: all 0.5s ease;
+    
+}
+
+.sidebar ul {
+    padding: 0;
+}
+
+.sidebar .logo-details {
+    padding: 20px 0px 0px 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+}
+
+.sidebar .logo-details .icon {
+    color: white;
+    font-size: 32px;
+}
+
+.sidebar .logo-details .logo-name {
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+    opacity: 1;
+    user-select: none;
+}
+
+.sidebar .nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 10px;
+    height: 100%;
+    gap: 20px;
+    padding: 0;
+}
+
+.sidebar li {
+    position: relative;
+    margin: 10px 0;
+    list-style: none;
+    user-select: none;
+}
+
+.sidebar li.artists {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.sidebar li .title {
+    font-family: "Gotham", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: white;
+    /* margin-bottom: 10px; */
+}
+
+.sidebar li.artists .title {
+    margin-bottom: 15px;
+}
+
+.sidebar li .artist {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 225px;
+    /* background-color: rgb(30, 30, 30); */
+    background-image: linear-gradient(180deg, rgb(20, 20, 20), rgb(15, 15, 15));
+    gap: 5px;
+    padding: 10px 15px;
+    border-radius: 15px;
+    transition: all 0.25s;
+}
+
+.sidebar li .artist .info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar li .artist .info .text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2.5px;
+}
+
+.sidebar li .artist .info .text .name {
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    opacity: 1;
+}
+
+.sidebar li .artist .info .text .share {
+    font-family: "Gotham", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: white;
+    opacity: 1;
+}
+
+.sidebar li .artist .change {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    color: white;
+    gap: 5px;
+}
+
+.sidebar li .artist .change .pos {
+    color: green;
+}
+
+.sidebar li .artist .change .neg {
+    color: rgb(155, 0, 0);
+}
+
+.sidebar li .artist .img {
+    height: 35px;
+    width: 35px;
+    border-radius: 17.5px;
+}
+
+.sidebar li.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.sidebar li i {
+    font-size: 16px;
+    min-width: 50px;
+    line-height: 60px;
+}
+
+.sidebar li .link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 50px;
+    width: 225px;
+    opacity: 0.5;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    color: white;
+    /* background: rgb(10, 10, 10); */
+}
+
+.sidebar li .link-button.open .link,
+.sidebar li .expandlink .link.child-open {
+    background-color: rgb(20, 20, 20);
+    border-radius: 15px;
+    opacity: 1;
+}
+
+.sidebar li .link:hover,
+.sidebar li .expandlink .link:hover {
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+.sidebar li .expandlink {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar li .expandlink .link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    width: 225px;
+    opacity: 0.5;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    /* background: rgb(10, 10, 10); */
+    transition: all 0.25s ease;
+}
+
+.sidebar li .expandlink .link span {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sidebar li .expandlink .link .bx-chevron-down,
+.sidebar li .expandlink .link .bx-chevron-up {
+    font-size: 26px;
+}
+
+.sidebar li .expandlink .expandedlink {
+    display: none;
+}
+
+.sidebar li .expandlink.open .expandedlink {
+    display: flex;
+    margin-left: 20px;
+    gap: 15px;
+}
+
+.sidebar li .expandlink.open .expandedlink hr {
+    border: 2.5px solid rgb(40, 40, 40);
+}
+
+.sidebar li .expandlink.open .expandedlink ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sidebar li .expandlink.open .expandedlink li {
+    color: white;
+    font-size: 16px;
+    opacity: 0.4;
+    transition: all 0.1s ease;
+}
+
+.sidebar li .expandlink.open .expandedlink li.open {
+    opacity: 1;
+}
+
+.sidebar li .expandlink.open .expandedlink label:hover,
+.sidebar li .expandlink.open .expandedlink li:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.sidebar .user {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    bottom: 20px;
+    left: 20px;
+}
+
+.sidebar .user .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 235px;
+    padding: 7.5px 5px 7.5px 10px;
+    border-radius: 35px;
+    background-color: rgb(15, 15, 15);
+    color: rgb(120, 120, 120);
+}
+
+.sidebar .user .top .profile {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 18px;
+}
+
+.sidebar .user .top .profile p {
+    text-align: start;
+    width: 145px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar .user .top .profile p:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.sidebar .user .top .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    height: 30px;
+    width: 30px;
+    border-radius: 25px;
+    background-color: rgb(190, 190, 190);
+}
+
+.sidebar .user .top .expand {
+    color: rgb(90, 90, 90); 
+    font-size: 16px;
+    padding: 10px;
+}
+
+.sidebar .user .top .expand:hover {
+    cursor: pointer;
+}
+
+.sidebar .user .bottom {
+    display: flex;
+    margin: 5px 0px 0px 20px;
+    transition: all 0.25s;
+    height: 25px;
+    opacity: 1;
+}
+
+.sidebar .user .bottom.closed {
+    /* transform: translateY(-100%); */
+    height: 0px;
+    opacity: 0;
+}
+
+.sidebar .user .bottom hr {
+    border: 2px solid rgb(60, 60, 60);
+}
+
+.sidebar .user .bottom .options {
+    color: rgb(100, 100, 100);
+    font-size: 14px;
+}
+
+.sidebar .user .bottom .options span {
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 10px;
+    padding: 5px 10px;
+}
+
+.sidebar .user .bottom .options span:hover {
+    color: rgb(150, 150, 150);
+    cursor: pointer;
+}
+
+.sidebar .user .bottom.closed .options span:hover {
+    cursor: default;
+}
+
+.sidebar .user .bottom .options .logout i {
+    color: rgb(197, 0, 0);
+}
+
+@media (max-width: 420px) {
+    .sidebar li .tooltip {
+        display: none;
+    }
+}

@@ -1,0 +1,71 @@
+
+.banner .title {
+    font-size: 36px;
+    position: absolute;
+    left: 50px;
+    top: 150px;
+    text-shadow: 0px 0px 20px black;
+    z-index: 2;
+    user-select: none;
+}
+
+.banner .bx {
+    font-size: 0px;
+    position: absolute;
+    z-index: 3;
+    transition: all 0.25s ease;
+}
+
+.banner .bx:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+}
+
+.banner .bxs-right-arrow {
+    right: 520px;
+    top: 120px;
+}
+
+.banner .bxs-right-arrow.show {
+    opacity: 100%;
+    font-size: 36px;
+    right: 500px;
+    top: 100px;
+}
+
+.banner .bxs-left-arrow {
+    left: 60px;
+    top: 120px;
+}
+
+.banner .bxs-left-arrow.show {
+    left: 40px;
+    top: 100px;
+    opacity: 100%;
+    font-size: 36px;
+}
+
+.banner .banner-items {
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.banner .banner-items img {
+    height: 175px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: 0.25s ease;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.banner .banner-items img:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}

@@ -1,0 +1,437 @@
+.artist-charts {
+    margin: 25px 0px 0px 25px;
+    display: flex;
+    /* height: 100vh; */
+}
+
+.artist-charts .top100 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    height: 760px;
+    width: 950px;
+    /* width: 460px; */
+    padding: 30px 20px;
+    border-radius: 25px;
+    /* overflow-y: auto; */
+    overflow-x: hidden;
+    /* background-color: rgb(10, 10, 10); */
+}
+
+.artist-charts .top100 .header { 
+    display: flex;
+    width: 410px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.artist-charts .top100 .header .title {
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.artist-charts .top100 .header nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    gap: 10px;
+    background-color: rgb(20, 20, 20);
+}
+
+.artist-charts .top100 .header button {
+    all: unset;
+    font-size: 16px;
+}
+
+.artist-charts .top100 .artists {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    height: 800px;
+    width: 950px;
+    border-radius: 25px;
+    padding: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.artist-charts .top100 .artist {
+    /* position: relative; */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 75px;
+    gap: 10px;
+    /* padding: 10px 15px; */
+    border-radius: 25px;
+    background-color: rgb(20, 20, 20);
+    margin-left: 0px;
+    /* transition: all 2.5s; */
+    transition: transform 0.5s, top 0.5s, width 0.5s, height 0.5s, margin-left 0.25s;
+    /* -webkit-font-smoothing: subpixel-antialiased; */
+    /* opacity: 0.9; */
+}
+
+.artist-charts .top100 .artist.open {
+    /* top: 25px; */
+    border-radius: 35px;
+    transform: translateX(95%);
+    position: absolute;
+    width: 450px;
+    height: 645px;
+    /* position: relative; */
+    /* position: static; */
+}
+
+.artist-charts .top100 .artist:hover {
+    /* transform: scale(1.025); */
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.artist-charts .top100 .artist.open:hover {
+    /* top: 100px; */
+    transform: translateX(95%);
+    margin-left: 0px;
+    cursor: default;
+}
+
+.artist-charts .top100 .artist *:hover {
+    cursor: pointer;
+}
+
+.artist-charts .top100 .artist.open *:hover {
+    cursor: default;
+}
+
+.artist-charts .top100 .artist .default {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 400px;
+    padding: 12.5px 15px;
+    transition: width 0.5s, margin-top 0.5s;
+}
+
+.artist-charts .top100 .artist.open .default {
+    margin-top: 10px;
+    width: 450px;
+}
+
+.artist-charts .top100 .artist .left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.artist-charts .top100 .artist .position {
+    width: 25px;
+}
+
+.artist-charts .top100 .artist .img {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+}
+
+.artist-charts .top100 .artist .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.artist-charts .top100 .artist .info .name {
+    font-size: 20px;
+    color: white;
+    opacity: 1;
+}
+
+.artist-charts .top100 .artist .info .genre {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.726);
+}
+
+.artist-charts .top100 .artist .left i {
+    color: var(--main-text-color);
+}
+
+.artist-charts .top100 .artist .change {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    color: white;
+    gap: 5px;
+    margin-right: 5px;
+    transition: all 0.5s;
+}
+
+.artist-charts .top100 .artist:hover .change {
+    margin-right: 20px;
+}
+
+.artist-charts .top100 .artist.open:hover .change {
+    margin-right: 5px;
+}
+
+.artist-charts .top100 .artist .change .pos {
+    color: green;
+}
+
+.artist-charts .top100 .artist .change .neg {
+    color: rgb(155, 0, 0);
+}
+
+.artist-charts .top100 .artist .bx-chevron-right {
+    position: absolute;
+    right: 10px;
+    transition: all 0.25s;
+    opacity: 0;
+}
+
+.artist-charts .top100 .artist:hover .bx-chevron-right {
+    opacity: 1;
+}
+
+.artist-charts .top100 .artist.open:hover .bx-chevron-right {
+    opacity: 0;
+}
+
+.artist-charts .top100 .artist .expand {
+    /* display: none; */
+    /* background-color: aliceblue; */
+    transform: scaleY(0);
+    transition: transform 0.5s, height 0.5s;
+}
+
+.artist-charts .top100 .artist.open .expand {
+    height: 525px;
+    transform: scaleY(1);
+    /* display: block; */
+}
+
+.artist-charts .top100 .artist .expand .stats {
+    /* height: 150px; */
+    /* background-color: ; */
+    margin-bottom: 10px;
+}
+
+.artist-charts .top100 .artist .expand .add {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 50px;
+    width: 50px;
+    transition: all 0.5s;
+    background-color: rgb(20, 20, 20);
+    padding: 10px;
+    border-radius: 25px;
+    margin: 0;
+}
+
+.artist-charts .top100 .artist .expand .add:hover {
+    background-color: rgb(10, 10, 10);
+    cursor: pointer;
+    transform: translateY(-10px);
+}
+
+.artist-charts .top100 .artist .expand .add.open:hover {
+    background-color: rgb(20, 20, 20);
+    cursor: default;
+    transform: none;
+}
+
+.artist-charts .top100 .artist .expand .add.open {
+    height: 250px;
+    width: 400px;
+    border-radius: 15px;
+}
+
+.artist-charts .top100 .artist .expand .add .bx-plus {
+    position: absolute;
+    /* margin-top: 5px; */
+    transition: all 0.25s;
+    padding: 12.5px;
+    top: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.artist-charts .top100 .artist .expand .add.open .bx-plus {
+    transform: rotateZ(135deg);
+    margin: 15px;
+    padding: 5px;
+}
+
+.artist-charts .top100 .artist .expand .add .bx-plus:hover {
+    cursor: pointer;
+}
+
+.artist-charts .top100 .artist .expand .add.open .bx-plus:hover {
+    transform: rotateZ(135deg) scale(1.2);
+}
+
+.artist-charts .top100 .artist .expand .addartist {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    border-radius: 15px;
+    transition: transform 0.5s, opacity 0.25s, margin 0.5s;
+    transform: translate(-175px, -90px) scale(0);
+    /* transform: scale(0) translate(-100px, -100px); */
+    opacity: 0;
+    /* margin: 0px 10000px 10000px 0px; */
+}
+
+.artist-charts .top100 .artist .expand .add.open .addartist {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 1;
+    margin: 15px;
+}
+
+.artist-charts .top100 .artist .expand .addartist label {
+    font-family: "Gotham", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    right: 0;
+}
+
+.artist-charts .top100 .artist .expand .addartist .values {
+    display: flex;
+    flex-direction: column;
+    /* margin-top: 5px; */
+    align-items: center;
+    gap: 5px;
+}
+
+.artist-charts .top100 .artist .expand .addartist .values label {
+    font-size: 16px;
+    color: rgb(175, 175, 175);
+}
+
+.artist-charts .top100 .artist .expand .addartist .values .totals {
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+    /* justify-content: center; */
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 350px;
+}
+
+.artist-charts .top100 .artist .expand .addartist .values .total {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: rgb(30, 30, 30); */
+    /* background-color: none; */
+    color: white;
+    /* padding: 5px; */
+    border-radius: 5px;
+    font-size: 16px;
+    height: 25px;
+    /* width: 330px; */
+    text-align: center;
+    margin-left: 10px;
+}
+
+.artist-charts .top100 .artist .expand .addartist input {
+    /* font-size: 18px; */
+    /* all: unset; */
+    border: none;
+    /* background-color: rgb(30, 30, 30); */
+    background-color: transparent;
+    color: white;
+    /* padding: 5px; */
+    border-radius: 5px;
+    font-size: 16px;
+    height: 35px;
+    margin-right: 5px;
+    /* width: 310px; */
+    text-align: right;
+    /* text-align: center; */
+}
+
+.artist-charts .top100 .artist .expand .addartist input:hover {
+    cursor: text;
+}
+
+.artist-charts .top100 .artist .expand .addartist input:focus {
+    outline: none;
+}
+.artist-charts .top100 .artist .expand .addartist input::-webkit-outer-spin-button,
+.artist-charts .top100 .artist .expand .addartist   input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.artist-charts .top100 .artist .expand .addartist .values .quantity {
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+    /* justify-content: center; */
+    align-items: center;
+    justify-content: space-between;
+    width: 350px;
+}
+
+.artist-charts .top100 .artist .expand .addartist .values .quantity .input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-left: 10px;
+    font-weight: 400;
+    /* width: 330px; */
+}
+
+.artist-charts .top100 .artist .expand .addartist .values .quantity .spin {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    color: rgb(60, 60, 60);
+}
+
+.artist-charts .top100 .artist .expand .addartist .buttons {
+    font-size: 30px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    color: rgb(70, 70, 70);
+}
+
+.artist-charts .top100 .artist .expand .addartist .buttons i {
+    transition: all 0.25s;
+}
+
+.artist-charts .top100 .artist .expand .addartist .buttons i:hover {
+    transform: scale(1.1);
+    color: rgb(30, 30, 30);
+    cursor: pointer;
+}
+
+.artist-charts .top100 .artist .expand .addartist .values .quantity i {
+    transition: all 0.25s;
+}
+
+.artist-charts .top100 .artist .expand .addartist .values .quantity .spin i:hover {
+    color: rgb(30, 30, 30);
+    cursor: pointer;
+}
+
+.line-chart {
+    width: 400px;
+}

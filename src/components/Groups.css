@@ -1,0 +1,174 @@
+.Groups {
+    /* margin: 15px 15px 0px 0px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 10px;
+    width: calc((100vw - 275px)/1.35 - 35px);
+    height: calc(100vh - 50px);
+}
+
+.Groups .title {
+    display: flex;
+    font-size: 22px;
+    gap: 10px;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+.Groups .title i {
+    font-size: 24px;
+}
+
+.Groups .list-groups {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    width: calc((100vw - 275px)/1.35 - 35px - 100px);
+    max-height: 60vh;
+    gap: 20px;
+    /* height: calc(50vh); */
+    margin-top: 75px;
+    /* backgroundcolor: rgb(25, 25, 25); */
+    overflow-y: auto;
+}
+
+.Groups .list-groups::-webkit-scrollbar {
+    width: 5px;
+}
+
+.Groups .list-groups::-webkit-scrollbar-thumb {
+    background: rgba(128, 128, 128, 0.5);
+    border-radius: 2.5px;
+}
+
+@property --c1 {
+    syntax: '<color>';
+    initial-value: rgb(40, 40, 40);
+    inherits: false;
+}
+  
+@property --c2 {
+    syntax: '<color>';
+    initial-value: rgb(30, 30, 30);
+    inherits: false;
+}
+
+.Groups .list-groups .group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 225px;
+    width: 200px;
+    padding: 25px;
+    background-image: linear-gradient(180deg, var(--c1),var(--c2));
+    transition: all 0.25s, --myColor1 0.25s, --myColor2 0.25s;
+}
+
+.Groups .list-groups .group:hover {
+    --c1: rgb(50, 50, 50);
+    --c2: rgb(40, 40, 40);
+    cursor: pointer;
+}
+
+.Groups .list-groups .group .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    width: 150px;
+    background-color: rgb(40, 40, 40);
+    color: rgb(80, 80, 80);
+    border-radius: 10%;
+    font-size: 48px;
+    box-shadow: rgba(10, 10, 10, 0.35) 0px 5px 10px 5px;
+}
+
+.Groups .list-groups .group .name {
+    font-size: 20px;
+}
+
+.Groups .list-groups .group .score {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 5px;
+}
+
+.Groups .list-groups .group .score .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    background-color: rgb(40, 40, 40);
+    color: rgb(80, 80, 80);
+    border-radius: 50%;
+    font-size: 48px;
+}
+
+.Groups .list-groups .empty {
+    width: calc((100vw - 275px)/1.35 - 35px);
+    text-align: center;
+    color: rgb(60, 60, 60);
+}
+
+.Groups hr {
+    border: 3px solid rgb(50, 50, 50);
+    border-radius: 3px;
+    margin: 30px;
+    margin-right: 45px;
+    width: calc((100vw - 275px)/1.35 - 35px - 100px);
+}
+
+.Groups .group {
+    /* height: 200px; */
+    /* width: 300px; */
+    /* background-color: rgb(20, 20, 20); */
+    border-radius: 15px;
+}
+
+.Groups .new-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 40px; */
+    gap: 20px;
+}
+
+.Groups .new-group span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    padding: 20px;
+    /* height: 50px; */
+    gap: 10px;
+    transition: all 0.25s;
+}
+
+.Groups .new-group .create-group {
+    background-color: green;
+}
+
+.Groups .new-group .join-group {
+    color: rgb(20, 20, 20);
+    background-color: rgb(200, 200, 200);
+}
+
+.Groups .new-group span p {
+    font-size: 20px;
+}
+.Groups .new-group span i {
+    font-size: 24px;
+}
+
+.Groups .new-group span:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}

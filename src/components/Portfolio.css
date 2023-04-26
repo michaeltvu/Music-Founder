@@ -1,0 +1,229 @@
+.Portfolio {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: flex-start;
+    /* justify-content: center; */
+    width: 100vw;
+    height: 100vh;
+    /* background-color: rgb(48, 48, 48); */
+    /* gap: 20px; */
+    padding: 25px;
+}
+
+.Portfolio .col1 {
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    gap: 10px;
+}
+
+.Portfolio .col2 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.Portfolio .title {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+    /* color: var(--main-text-color); */
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.Portfolio .title i{
+    font-size: 36px;
+}
+
+.Portfolio .summary {
+    position: absolute;
+    top: 25px;
+    right: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 20px;
+    width: 500px;
+    padding: 25px;
+    gap: 10px;
+    background-color: rgb(20, 20, 20);
+    border-radius: 25px;
+}
+
+.Portfolio .summary .total-value {
+    font-size: 62px;
+    /* color: var(--main-text-color); */
+    color: white;
+}
+
+.Portfolio .summary hr {
+    width: 220px;
+    border: 3px solid var(--main-text-color);
+    /* border: 3px solid white; */
+    border-radius: 5px;
+}
+
+.Portfolio .summary .gain {
+    /* width: 500px; */
+    /* text-align: left; */
+    /* color: var(--main-text-color); */
+    display: flex;
+    justify-content: space-between;
+    width: 450px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.Portfolio .summary .gain .gain-lbl {
+    /* padding-left: 150px; */
+    /* justify-self: end; */
+    color: green;
+}
+
+.Portfolio .chart {
+    /* width: 500px; */
+    height: 375px;
+    padding: 25px;
+    background-color: rgb(20, 20, 20);
+    border-radius: 25px;
+}
+
+.Portfolio .chart .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 450px;
+    color: white;
+    font-size: 22px;
+}
+
+.Portfolio .chart .nav label {
+    color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+}
+
+.Portfolio .chart .nav label i {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.Portfolio .chart .nav span {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    gap: 10px;
+}
+
+.Portfolio .chart .nav span label {
+    font-size: 18px;
+    color: var(--main-text-color);
+}
+
+.Portfolio .chart .nav span button {
+    all: unset;
+    /* color: rgb(174, 128, 190); */
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    transition: all 0.5s;
+}
+
+.Portfolio .chart .nav span button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    /* font-weight: 800; */
+}
+
+.Portfolio .your-artists {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 500px;
+    gap: 5px;
+    background-color: rgb(20, 20, 20);
+    padding: 25px;
+    border-radius: 25px;
+}
+
+.Portfolio .your-artists .your-artist {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 440px;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    /* background-color: white; */
+    transition: all 0.25s;
+    /* -webkit-font-smoothing: subpixel-antialiased; */
+    /* opacity: 0.9; */
+}
+
+.Portfolio .your-artists .your-artist:hover {
+    transform: scale(1.025);
+    background-color: rgb(40, 40, 40);
+    cursor: pointer;
+}
+
+.Portfolio .your-artists .your-artist *:hover {
+    cursor: pointer;
+}
+
+.Portfolio .your-artists .your-artist .left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.Portfolio .your-artists .your-artist .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.Portfolio .your-artists .your-artist .info .name {
+    font-size: 20px;
+    color: white;
+    opacity: 1;
+}
+
+.Portfolio .your-artists .your-artist .info .genre {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.726);
+}
+
+.Portfolio .your-artists .your-artist .left i {
+    color: var(--main-text-color);
+}
+
+.Portfolio .your-artists .your-artist .change {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    color: white;
+    gap: 5px;
+}
+
+.Portfolio .your-artists .your-artist .change .pos {
+    color: green;
+}
+
+.Portfolio .your-artists .your-artist .change .neg {
+    color: rgb(155, 0, 0);
+}
+
+.Portfolio .your-artists .your-artist .img {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+}
+
+#chartdiv {
+    height: 300px;
+    width: 450px;
+    /* background-color: rgb(40, 40, 40); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

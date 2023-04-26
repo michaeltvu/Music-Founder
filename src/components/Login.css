@@ -1,0 +1,300 @@
+.Login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    gap: 10px;
+    background-color: rgb(30, 30, 30);
+}
+
+.Login .login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 35px 40px;
+    background-color: black;
+    border-radius: 15px;
+}
+
+.Login .login-box .title {
+    display: flex;
+    flex-direction: column;
+}
+
+.Login .login-box .title span {
+    display: flex;
+    color: white;
+    /* opacity: 0.75; */
+    gap: 10px;
+    font-size: 36px;
+    margin-bottom: 0px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s;
+}
+
+.Login .login-box.sign .title span {
+    margin-bottom: 20px;
+}
+
+.Login .login-box.sign .login-lbl,
+.Login .login-box .signup-lbl {
+    display: block;
+    overflow: hidden;
+    height: 0px;
+    width: 0px;
+    opacity: 0;
+    transition: opacity 1.5s;
+}
+
+.Login .login-box .login-lbl,
+.Login .login-box.sign .signup-lbl {
+    display: block;
+    overflow: hidden;
+    height: auto;
+    width: auto;
+    opacity: 1;
+    font-size: 20px;
+    color: white;
+    font-weight: 400;
+    transition: opacity 1.5s;
+}
+
+.Login .login-box form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    transition: gap 0.25s;
+}
+
+.Login .login-box.sign form {
+    gap: 15px;
+}
+
+.Login .login-box .login-info,
+.Login .login-box.sign .login-info.username {
+    font-size: 14px;
+    color: white;
+    padding: 25px;
+    border: none;
+    border-radius: 15px;
+    background-color: rgb(30, 30, 30);
+    text-decoration: none;
+    width: 275px;
+    height: 55px;
+    transition: 0.5s all;
+    display: block;
+}
+
+.Login .login-box .login-info.username {
+    font-size: 0px;
+    padding: 0px;
+    height: 0px;
+    margin: 0px;
+    /* display: none; */
+}
+
+.Login .login-box .login-info:focus,
+.Login .login-box .login-info.email:focus {
+    outline: none;
+    transform: scale(1.025);
+    background-color: rgb(40, 40, 40);
+}
+
+.Login .login-box .login-other {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    gap: 10px;
+}
+
+.Login .login-box .login-other-btn {
+    font-size: 36px;
+    /* height: 40px; */
+    width: 40px;
+    transition: 0.3s all;
+    /* color: rgb(174, 128, 190); */
+    color: rgb(180, 180, 180);
+}
+
+.Login .login-box .login-other-btn:hover {
+    cursor: pointer;
+    /* color: rgb(140, 52, 170); */
+    color: white;
+    transform: translateY(-20%);
+}
+
+.Login .login-box .login-btn {
+    background-color: transparent;
+    border: none;
+    padding: 10px 0px 5px 0px;
+    transition: 0.5s all;
+    display: block;
+}
+
+.Login .login-box .login-btn.loading {
+    display: none;
+}
+
+/* .Login .login-box .login-btn i {
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    font-size: 24px;
+    width: 250px;
+    padding: 5px;
+    border-radius: 10px;
+} */
+
+.Login .login-box .login-btn .login-btn-lbl, 
+.Login .login-box.sign .login-btn .signup-btn-lbl {
+    font-size: 20px;
+    color: rgb(180, 180, 180);
+    display: block;
+    overflow: hidden;
+    transition: opacity 1.5s, transform 0.25s;
+    height: auto;
+    width: auto;
+    opacity: 1;
+}
+
+.Login .login-box .login-btn .login-btn-lbl:hover,
+.Login .login-box .login-btn .signup-btn-lbl:hover {
+    cursor: pointer;
+    color: white;
+    transform: translateY(-5%);
+}
+
+.Login .login-box.sign .login-btn .login-btn-lbl, 
+.Login .login-box .login-btn .signup-btn-lbl {
+    display: block;
+    overflow: hidden;
+    height: 0px;
+    width: 0px;
+    opacity: 0;
+    transition: opacity 1.5s, transform 0.25s;
+}
+
+.Login .login-box .error-message {
+    font-size: 12px;
+    color: rgb(219, 95, 95);
+    margin-top: 5px;
+    width: 250px;
+}
+
+.Login .login-box .or {
+    font-size: 18px;
+    color: rgb(100, 100, 100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 0px 0px 5px 0px;
+}
+
+.Login .login-box .or hr {
+    border: 1.5px solid rgb(100, 100, 100);
+    border-radius: 1px;
+    width: 125px;
+}
+
+.Login .login-box .signup {
+    display: flex;
+    gap: 5px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.Login .login-box .signup label {
+    display: block;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 100;
+    height: auto;
+    width: auto;
+    opacity: 1;
+    transition: 0.3s all;
+}
+
+.Login .login-box.sign .signup .need-lbl,
+.Login .login-box .signup .have-lbl {
+    display: block;
+    overflow: hidden;
+    height: 0px;
+    width: 0px;
+    opacity: 0;
+    transition: opacity 1.5s, transform 0.25s;
+}
+
+.Login .login-box .signup button {
+    background: none;
+    border: none;
+    transition: opacity 1.5s, transform 0.25s;
+}
+
+.Login .login-box.sign .signup .log-lbl,
+.Login .login-box .signup .sign-lbl {
+    display: block;
+    overflow: hidden;
+    color: rgb(180, 180, 180);
+    height: auto;
+    width: auto;
+    opacity: 1;
+    transition: opacity 1.5s, transform 0.25s;
+}
+
+.Login .login-box .signup .log-lbl,
+.Login .login-box.sign .signup .sign-lbl {
+    display: block;
+    overflow: hidden;
+    height: 0px;
+    width: 0px;
+    opacity: 0;
+    transition: 0.3s all;
+}
+
+.Login .login-box .signup .log-lbl:hover,
+.Login .login-box .signup .sign-lbl:hover {
+    cursor: pointer;
+    color: white;
+    transform: translateY(-5%);
+}
+
+
+.Login .login-box .spinner {
+    display: none;
+    /* width: 25px;
+    height: 25px; */
+}
+
+.Login .login-box .spinner.loading {
+    display: block;
+}
+
+.Login .login-box .spinner:after {
+    content: " ";
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

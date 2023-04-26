@@ -1,0 +1,103 @@
+.my-artists-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 220px;
+    height: 100vh;
+    overflow-y: hidden;
+    background-color: rgb(9, 9, 9);
+    /* transition: all 0.5s ease; */
+    padding-right: 4.75px;
+}
+
+.my-artists-tab:hover {
+    overflow-y: auto;
+    padding-right: 0px;
+}
+
+.my-artists-tab .header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 20px 0px;
+    font-size: 20px;
+    gap: 10px;
+    user-select: none;
+}
+
+.my-artists-tab .artists {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    user-select: none;
+    margin: 60px 0px 20px 0px;
+}
+
+.my-artists-tab .artists .artist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 170px;
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    transition: all 0.25s ease;
+    background-color: rgb(25, 25, 25);
+}
+
+.my-artists-tab .artists .artist.hover {
+    cursor: pointer;
+    background-color: rgb(48, 48, 48);
+}
+
+.my-artists-tab .artists .artist .name {
+    font-size: 18px;
+    position: absolute;
+    transform: translateY(5px) translateX(25px);
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.25);;
+}
+
+.my-artists-tab .artists .artist .img {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    object-fit: cover;
+    transition: all 0.25s ease;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.my-artists-tab .artists .artist .img.hover {
+    border-radius: 5px;
+}
+
+.my-artists-tab .artists .artist .image {
+    transition: all 0.25s ease;
+}
+
+.my-artists-tab .artists .artist .image.hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.my-artists-tab .artists .artist .streams {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.my-artists-tab .artists .artist .fa-angles-up,
+.my-artists-tab .artists .artist .fa-angle-up {
+    color: green;
+}
+
+.my-artists-tab .artists .artist .fa-angle-down,
+.my-artists-tab .artists .artist .fa-angles-down {
+    color: red;
+}

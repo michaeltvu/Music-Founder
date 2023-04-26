@@ -1,0 +1,317 @@
+
+.your-groups {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.your-groups .bxs-group {
+    display: flex;
+    align-items: center;
+    font-size: 36px;
+}
+
+
+.your-groups .title {
+    font-size: 1em;
+}
+
+.your-groups .groups {
+    display: flex;
+    align-items: top;
+    gap: 20px;
+}
+
+.your-groups .bx-plus {
+    margin-left: 32px;
+    color: white;
+    font-size: 54px;
+    transition: all 0.25s ease;
+    padding: 40px 0px;
+}
+
+.your-groups .bx-plus:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+}
+
+/*.your-groups .group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;    
+    padding: 25px 0px 30px 15px;
+    border-radius: 15px;
+    background-color: rgb(9, 9, 9);
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.your-groups .group .grouptitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.your-groups .group .groupimg {
+    object-fit: cover;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+}
+
+.your-groups .group .groupname {
+    display: flex;
+    width: 290px;
+}
+
+.your-groups .group .divide {
+    width: 300px;
+}
+
+.your-groups .group .bxs-chevron-right {
+    padding: 10px;
+    position: absolute;
+    font-size: 24px;
+    left: 15px;
+    transform: translateX(310px) translateY(-10px);
+    transition: all 0.25s ease;
+}
+
+.your-groups .group .bxs-chevron-right:hover {
+    cursor: pointer;
+    transform: translateX(310px) translateY(-10px) scale(1.75);
+}
+
+.your-groups .group .members {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 400px;
+    padding: 10px;
+    padding-right: 9.35px;
+}
+
+.your-groups .group .members:hover {
+    overflow-y: scroll;
+    padding-right: 5px;
+}
+
+.your-groups .group .member {
+    display: flex;
+    width: 310px;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 22px;
+    padding: 0px 15px;
+    border-radius: 10px;
+}
+
+.your-groups .group .member.me {
+    color: black;
+    background-color: white;
+}
+
+.your-groups .group .member:hover {
+    cursor: pointer;
+    opacity: 1;
+    color: white;
+    background-color: rgb(48, 48, 48);
+    transform: scale(1.03);
+}
+
+.your-groups .group .member.me:hover {
+    color: black;
+    background-color: white;
+}
+
+.your-groups .group .member .rank {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+}
+
+.your-groups .group .member .rank.gold {
+    color: gold;
+}
+
+.your-groups .group .member .rank.silver {
+    color: silver;
+}
+
+.your-groups .group .member .rank.bronze {
+    color: rgb(165, 77, 42);
+}
+
+.your-groups .group .member .change {
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5px;
+    width: 15px;
+}
+.your-groups .group .member hr { 
+    border: 1px solid;
+    height: 40px;
+    margin: 2.5px 0px;
+}
+
+.your-groups .group .member .pfp {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.your-groups .group .member .name {
+    font-size: 18px;
+} */
+
+.your-groups .groups .smallgroup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgb(9, 9, 9);
+    padding: 20px;
+    border-radius: 20px;
+    width: 300px;
+    height: 140px;
+    transition: all 0.25s ease;
+}
+
+.your-groups .groups .smallgroup.hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.your-groups .groups .smallgroup.show {
+    height: 350px;
+}
+
+.your-groups .groups .smallgroup .title {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.your-groups .groups .smallgroup .groupimg {
+    object-fit: cover;
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    transition: all 0.25s ease;
+}
+
+.your-groups .groups .smallgroup.hover .groupimg {
+    border-radius: 25px;
+    transform: scale(1.025);
+}
+
+.your-groups .groups .smallgroup .groupname {
+    width: 110px;
+    max-height: 100px;
+    text-align: left;
+    overflow-wrap: break-word;
+}
+
+.your-groups .smallgroup .members {
+    opacity: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 0px;
+    width: 0px;
+    transition: all 0.25s ease;
+}
+
+.your-groups .smallgroup.show .members {
+    opacity: 100%;
+    height: 400px;
+    width: auto;
+    padding: 10px;
+    padding-right: 9.35px;
+}
+
+.your-groups .smallgroup .members:hover {
+    overflow-y: scroll;
+    padding-right: 5px;
+}
+
+.your-groups .smallgroup .member {
+    display: flex;
+    width: 240px;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 22px;
+    padding: 0px 15px;
+    border-radius: 10px;
+}
+
+.your-groups .smallgroup .member.me {
+    color: black;
+    background-color: white;
+}
+
+.your-groups .smallgroup .member:hover {
+    cursor: pointer;
+    opacity: 1;
+    color: white;
+    background-color: rgb(48, 48, 48);
+    transform: scale(1.03);
+}
+
+.your-groups .smallgroup .member.me:hover {
+    color: black;
+    background-color: white;
+}
+
+.your-groups .smallgroup .member .rank {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+}
+
+.your-groups .smallgroup .member .rank.gold {
+    color: gold;
+}
+
+.your-groups .smallgroup .member .rank.silver {
+    color: silver;
+}
+
+.your-groups .smallgroup .member .rank.bronze {
+    color: rgb(165, 77, 42);
+}
+
+.your-groups .smallgroup .member .change {
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5px;
+    width: 15px;
+}
+.your-groups .smallgroup .member hr { 
+    border: 1px solid;
+    height: 40px;
+    margin: 2.5px 0px;
+}
+
+.your-groups .smallgroup .member .pfp {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.your-groups .smallgroup .member .name {
+    font-size: 18px;
+}
