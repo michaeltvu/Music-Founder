@@ -1,6 +1,10 @@
+@import url('http://fonts.cdnfonts.com/css/gotham-pro');
+@import url('https://fonts.cdnfonts.com/css/gotham');
+@import url('https://fonts.cdnfonts.com/css/sf-mono');
+
 :root {
     --main-text-color: rgb(140, 52, 170);
-  }
+}
 
 .App {
     text-align: center;

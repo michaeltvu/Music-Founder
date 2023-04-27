@@ -44,8 +44,10 @@ export function Groups(props) {
                     <i className="fa-solid fa-plus"></i>
                 </span> */}
             </div>
-            <div className="popup">
-                
+            <div className="popupbackground">
+                <div className="popup">
+                    <i className="fa-solid fa-xmark close"></i>
+                </div>
             </div>
         </div>
     )
