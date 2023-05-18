@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { getDoc, doc, arrayUnion, updateDoc, arrayRemove } from "firebase/firestore";
+import { useNavigate } from 'react-router-dom';
 import { db } from '../admin/firebase.js';
 import './Friends.css'
 
 export function Friends(props) {
+    const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [state, setState] = useState('friends');
     const [loading, setLoading] = useState('loading');
@@ -18,6 +20,11 @@ export function Friends(props) {
             getFriendRequests();
         }
     }, [props.user])
+
+    const getUserColor = (name) => {
+        const colors = [[103, 97, 168], [242, 100, 48], [0, 157, 220], [0, 155, 114], [42, 95, 152], [166, 212, 159], [216, 49, 91], [30, 27, 24]];
+        return colors[(name.charCodeAt(0) + name.charCodeAt(name.length-1))%8];
+    }
 
     const getFriends = async() => {
         if (props.user.friends.length !== friends.length) {
@@ -154,6 +161,10 @@ export function Friends(props) {
         }
     }
 
+    const clickFriend = (username) => {
+        navigate(`/user/${username}`)
+    }
+
     let list, button, title;
     if (state === 'friends') {
         if (loading === 'loading') {
@@ -164,9 +175,9 @@ export function Friends(props) {
         }
         else {
             list = friends.map((friend, index) => (
-                <div className="friend" key={index}>
+                <div className="friend" key={index} onClick={() => clickFriend(friend.username)}>
                     <span className="personal">
-                        {friend.img ? <img className="image" src={friend.img} alt="profile"></img> : <i className="fa-solid fa-user image"></i>}
+                        {friend.img ? <img className="image" src={friend.img} alt="profile"></img> : <i className="fa-solid fa-user image" style={{color: `rgb(${getUserColor(friend.username)}, 0.5)`}}></i>}
                         <p>{friend.username}</p>
                     </span>
                     <span className="change">
@@ -202,7 +213,7 @@ export function Friends(props) {
                 <div className="request" key={index}>
                     <span className="personal">
                             <i class="fa-solid fa-envelope"></i>
-                            {user.img ? <img className="image" src={user.img} alt="profile"></img> : <i className="fa-solid fa-user image"></i>}
+                            {user.img ? <img className="image" src={user.img} alt="profile"></img> : <i className="fa-solid fa-user image" style={{color: `rgb(${getUserColor(user.username)}, 0.5)`}}></i>}
                             <p>{user.username}</p>
                     </span>
                     <span className="accept">

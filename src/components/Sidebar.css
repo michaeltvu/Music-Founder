@@ -2,27 +2,20 @@
     display: flex;
     justify-content: center;
     position: fixed;
-    left: 0;
     top: 0;
     height: 100vh;
-    width: 275px;
-    /* background: rgb(30, 30, 30); */
-    background-image: linear-gradient(180deg, rgb(35, 35, 35), rgb(20, 20, 20) 75%);
-    /* padding: 6px 14px; */
+    /* width: 275px; */
+    background-image: linear-gradient(180deg, rgb(25, 25, 25), rgb(20, 20, 20) 75%);
     z-index: 2;
-    transition: all 0.5s ease;
-    
-}
-
-.sidebar ul {
-    padding: 0;
 }
 
 .sidebar .logo-details {
     top: 25px;
-    left: 25px;
+    /* left: 25px; */
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     position: absolute;
     gap: 10px;
 }
@@ -43,117 +36,123 @@
 .sidebar .nav-list {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: flex-start; */
+    align-items: center;
     justify-content: flex-start;
     margin: 10px;
     margin-top: 75px;
     /* height: 100%; */
-    gap: 20px;
-    padding: 0;
+    width: 100%;
+    gap: 30px;
 }
 
-.sidebar li {
-    position: relative;
-    margin: 10px 0;
-    list-style: none;
-    user-select: none;
-}
-
-.sidebar li.artists {
+.sidebar .nav-list .artists {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 15px;
 }
 
-.sidebar li .title {
-    font-family: "Gotham", sans-serif;
-    font-weight: 500;
+.sidebar .nav-list .title {
     font-size: 14px;
     color: white;
 }
 
-.sidebar li.artists .title {
-    margin-bottom: 15px;
+.sidebar .nav-list .artists .title {
+    margin-bottom: 5px;
 }
 
-.sidebar li .artist {
+.sidebar .nav-list .artists .artist {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 225px;
-    background-image: linear-gradient(180deg, rgb(20, 20, 20), rgb(15, 15, 15));
+    /* height: 50px; */
+    color: white;
+    background-color: rgb(40, 40, 40);
     gap: 5px;
-    padding: 10px 15px;
-    border-radius: 15px;
-    transition: all 0.25s;
+    padding: 15px;
+    border-radius: 5px;
+    transition: background-color 0.25s, transform 0.25s;
 }
 
-.sidebar li .artist .info {
+.sidebar .nav-list .artists .artist:hover {
+    background-color: rgb(60, 60, 60);
+    transform: translateY(-5%);
+    cursor: pointer;
+}
+
+.sidebar .nav-list .artists .artist .info {
     display: flex;
-    align-items: center;
     gap: 10px;
+    align-items: center;
+    font-size: 14px;
 }
 
-.sidebar li .artist .info .text {
+.sidebar .nav-list .artists .artist .info .text {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
     gap: 2.5px;
 }
 
-.sidebar li .artist .info .text .name {
-    font-weight: bold;
-    font-size: 14px;
-    color: white;
-    opacity: 1;
-}
-
-.sidebar li .artist .info .text .share {
-    font-family: "Gotham", sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-    color: white;
-    opacity: 1;
-}
-
-.sidebar li .artist .change {
+.sidebar .nav-list .artists .artist .info .text .popularity {
     display: flex;
-    flex-direction: column;
-    font-size: 12px;
-    color: white;
+    gap: 2.5px;
+    color: rgb(170, 170, 170);
+}
+
+.sidebar .nav-list .artists .artist .info .name {
+    text-align: start;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar .nav-list .artists .artist .score {
+    display: flex;
+    justify-content: flex-end;
     gap: 5px;
-}
-
-.sidebar li .artist .change .pos {
-    color: green;
-}
-
-.sidebar li .artist .change .neg {
-    color: rgb(155, 0, 0);
-}
-
-.sidebar li .artist .img {
-    height: 35px;
+    align-items: center;
     width: 35px;
-    border-radius: 17.5px;
 }
 
-.sidebar li.menu {
+.sidebar .nav-list .artists .artist .score .fa-fire-flame-curved {
+    color: rgb(255, 186, 125);
+}
+
+.sidebar .nav-list .artists .artist .score .fa-snowflake {
+    color: rgb(123, 200, 228);
+}
+
+.sidebar .nav-list .artists .artist .info .image {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+}
+
+.sidebar .nav-list .menu {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
 }
 
-.sidebar li i {
+.sidebar .nav-list .menu .links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.sidebar .nav-list .menu .link i {
     font-size: 16px;
     min-width: 50px;
     line-height: 60px;
 }
 
-.sidebar li .link {
+.sidebar .nav-list .menu .link {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -161,132 +160,86 @@
     width: 225px;
     opacity: 0.5;
     text-decoration: none;
-    transition: all 0.1s ease;
+    transition: opacity 0.1s ease;
     color: white;
 }
 
-.sidebar li .link-button.open .link,
-.sidebar li .expandlink .link.child-open {
-    background-color: rgb(20, 20, 20);
+.sidebar .nav-list .menu .link.open {
     border-radius: 15px;
     opacity: 1;
 }
 
-.sidebar li .link:hover,
-.sidebar li .expandlink .link:hover {
+.sidebar .nav-list .menu .link:hover {
     opacity: 0.75;
     cursor: pointer;
 }
 
-.sidebar li .expandlink {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+@property --usercolor1 {
+    syntax: '<color>';
+    initial-value: rgb(40, 40, 40);
+    inherits: false;
 }
-
-.sidebar li .expandlink .link {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 50px;
-    width: 225px;
-    opacity: 0.5;
-    border-radius: 12px;
-    text-decoration: none;
-    color: white;
-    /* background: rgb(10, 10, 10); */
-    transition: all 0.25s ease;
-}
-
-.sidebar li .expandlink .link span {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.sidebar li .expandlink .link .bx-chevron-down,
-.sidebar li .expandlink .link .bx-chevron-up {
-    font-size: 26px;
-}
-
-.sidebar li .expandlink .expandedlink {
-    display: none;
-}
-
-.sidebar li .expandlink.open .expandedlink {
-    display: flex;
-    margin-left: 20px;
-    gap: 15px;
-}
-
-.sidebar li .expandlink.open .expandedlink hr {
-    border: 2.5px solid rgb(40, 40, 40);
-}
-
-.sidebar li .expandlink.open .expandedlink ul {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.sidebar li .expandlink.open .expandedlink li {
-    color: white;
-    font-size: 16px;
-    opacity: 0.4;
-    transition: all 0.1s ease;
-}
-
-.sidebar li .expandlink.open .expandedlink li.open {
-    opacity: 1;
-}
-
-.sidebar li .expandlink.open .expandedlink label:hover,
-.sidebar li .expandlink.open .expandedlink li:hover {
-    opacity: 1;
-    cursor: pointer;
+  
+@property --usercolor2 {
+    syntax: '<color>';
+    initial-value: rgb(35, 35, 35);
+    inherits: false;
 }
 
 .sidebar .user {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    bottom: 20px;
-    left: 20px;
-}
-
-.sidebar .user .top {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
     width: 235px;
     padding: 7.5px 5px 7.5px 10px;
     border-radius: 35px;
-    background-color: rgb(40, 40, 40);
+    background-image: linear-gradient(90deg, var(--usercolor1), var(--usercolor2) 10%);
     color: rgb(120, 120, 120);
+    transition: transform 0.25s, --usercolor1 0.25s, --usercolor2 0.25s;
 }
 
-.sidebar .user .top .profile {
+.sidebar .user:hover {
+    cursor: pointer;
+    transform: translateY(-5%);
+    --usercolor1: rgb(60, 60, 60);
+    --usercolor2: rgb(50, 50, 50);
+}
+
+.sidebar .user .profile {
     display: flex;
     gap: 10px;
     align-items: center;
     font-size: 18px;
 }
 
-.sidebar .user .top .profile p {
+.sidebar .user .profile p {
     text-align: start;
-    width: 145px;
+    max-width: 130px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.sidebar .user .top .profile p:hover {
-    text-decoration: underline;
-    cursor: pointer;
+.sidebar .user .change {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+    padding: 10px;
 }
 
-.sidebar .user .top .image {
+.sidebar .user .change .fa-fire-flame-curved {
+    color: rgb(255, 186, 125);
+}
+
+.sidebar .user .change .fa-snowflake {
+    color: rgb(123, 200, 228);
+}
+
+.sidebar .user .image {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -297,60 +250,147 @@
     background-color: rgb(190, 190, 190);
 }
 
-.sidebar .user .top .expand {
-    color: rgb(90, 90, 90); 
-    font-size: 16px;
-    padding: 10px;
+
+@media (min-width: 0) {
+    .sidebar {
+        width: 275px;
+        right: -275px;
+        left: unset;
+    }
 }
 
-.sidebar .user .top .expand:hover {
-    cursor: pointer;
+@media (min-width: 800px) {
+    .sidebar .logo-details {
+        gap: 10px;
+    }
+
+    .sidebar .logo-details .icon {
+        font-size: 30px;
+    }
+    
+    .sidebar .logo-details .logo-name {
+        font-size: 30px;
+    }
+    
+    .sidebar {
+        right: unset;
+        left: 0;
+    }
 }
 
-.sidebar .user .bottom {
-    display: flex;
-    margin: 5px 0px 0px 20px;
-    transition: all 0.25s;
-    height: 25px;
-    opacity: 1;
-}
+@media (min-width: 1920px) {
 
-.sidebar .user .bottom.closed {
-    /* transform: translateY(-100%); */
-    height: 0px;
-    opacity: 0;
-}
+    .sidebar .nav-list {
+        margin-top: 4.5vw;
+        gap: 1.5vw;
+    }
 
-.sidebar .user .bottom hr {
-    border: 2px solid rgb(60, 60, 60);
-}
+    .sidebar .nav-list .artists {
+        gap: 1vw;
+    }
 
-.sidebar .user .bottom .options {
-    color: rgb(100, 100, 100);
-    font-size: 14px;
-}
+    .sidebar .nav-list .artists .title {
+        margin-bottom: 0.25vw;
+    }
 
-.sidebar .user .bottom .options span {
-    display: flex;
-    gap: 10px;
-    padding: 5px 10px;
-}
+    .sidebar .nav-list .artists .artist {
+        width: 12vw;
+        gap: 0.5vw;
+        padding: 0.75vw;
+        border-radius: 0.5vw;
+    }
+    
+    .sidebar .nav-list .artists .artist .info {
+        gap: 0.5vw;
+        font-size: 0.7vw;
+    }
 
-.sidebar .user .bottom .options span:hover {
-    color: rgb(150, 150, 150);
-    cursor: pointer;
-}
+    .sidebar .nav-list .artists .artist .info .text {
+        gap: 0.15vw;
+    }
 
-.sidebar .user .bottom.closed .options span:hover {
-    cursor: default;
-}
+    .sidebar .nav-list .artists .artist .info .text .popularity {
+        gap: 0.15vw;
+    }
+    
+    .sidebar .nav-list .artists .artist .info .name {
+        width: 100px;
+    }
+    
+    .sidebar .nav-list .artists .artist .score {
+        font-size: 0.75vw;
+        gap: 0.25vw;
+        width: 2vw;
+    }
+    
+    .sidebar .nav-list .artists .artist .info .image {
+        height: 1.75vw;
+        width: 1.75vw;
+        border-radius: 50%;
+    }
 
-.sidebar .user .bottom .options .logout i {
-    color: rgb(197, 0, 0);
-}
+    .sidebar .nav-list .menu .links {
+        gap: 0.5vw;
+        margin-top: 0.75vw;
+    }
 
-@media (max-width: 420px) {
-    .sidebar li .tooltip {
-        display: none;
+    .sidebar .nav-list .menu .link {
+        width: 12vw;
+        font-size: 0.85vw;
+        height: 5vh;
+    }
+
+    .sidebar .nav-list .menu .link i {
+        font-size: 0.85vw;
+        min-width: 3vw;
+    }
+
+    .sidebar .nav-list .title {
+        font-size: 0.85vw;
+    }
+
+    .sidebar .logo-details {
+        gap: 0.5vw;
+    }
+
+    .sidebar .logo-details .icon {
+        font-size: 1.75vw;
+    }
+    
+    .sidebar .logo-details .logo-name {
+        font-size: 1.75vw;
+    }
+
+    .sidebar {
+        width: 15vw;
+    }
+
+    .sidebar .user {
+        left: 1vw;
+        bottom: 1vw;
+        width: 13vw;
+        border-radius: 7vw;
+        padding: 0.65vw;
+    }
+
+    .sidebar .user .profile {
+        gap: 0.5vw;
+    }
+
+    .sidebar .user .profile p {
+        font-size: 0.85vw;
+        max-width: 10vw;
+    }
+
+    .sidebar .user .change {
+        gap: 0.25vw;
+        font-size: 0.75vw;
+        padding: 0.25vw;
+    }
+
+    .sidebar .user .image {
+        width: 1.5vw;
+        height: 1.5vw;
+        border-radius: 1vw;
     }
 }

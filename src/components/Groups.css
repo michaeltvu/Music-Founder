@@ -16,7 +16,6 @@
     position: absolute;
     top: 25px;
     left: 25px;
-    filter: blur(2.5px);
 }
 
 .Groups .title i {
@@ -35,7 +34,6 @@
     margin-top: 75px;
     /* backgroundcolor: rgb(25, 25, 25); */
     overflow-y: auto;
-    filter: blur(2.5px);
 }
 
 .Groups .list-groups::-webkit-scrollbar {
@@ -125,7 +123,6 @@
     margin: 30px;
     margin-right: 45px;
     width: calc((100vw - 275px)/1.35 - 35px - 100px);
-    filter: blur(2.5px);
 }
 
 .Groups .group {
@@ -149,7 +146,8 @@
     align-items: center;
     justify-content: center;
     width: 200px;
-    padding: 20px;
+    padding: 15px;
+    font-size: 18px;
     /* height: 50px; */
     gap: 10px;
     transition: all 0.25s;
@@ -157,18 +155,7 @@
 
 .Groups .new-group .create-group {
     background-color: green;
-}
-
-.Groups .new-group .join-group {
-    color: rgb(20, 20, 20);
-    background-color: rgb(200, 200, 200);
-}
-
-.Groups .new-group span p {
-    font-size: 20px;
-}
-.Groups .new-group span i {
-    font-size: 24px;
+    border-radius: 25px;
 }
 
 .Groups .new-group span:hover {
@@ -183,12 +170,16 @@
     justify-content: center;
     width: calc((100vw - 275px)/1.35 - 35px);
     height: calc(100vh - 50px);
+    transition: all 0.5s;
+    transform: scale(0);
 }
 
 .Groups .popup {
+    display: flex;
     position: relative;
     height: 400px;
     width: 500px;
+    padding: 25px;
     background-color: rgb(25, 25, 25);
     border-radius: 25px;
 }
@@ -204,9 +195,20 @@
     top: 10px;
     right: 10px;
     border-radius: 50%;
+    transition: all 0.25s;
 }
 
 .Groups .popup .close:hover {
     cursor: pointer;
     background-color: rgb(50, 50, 50);
+}
+
+.Groups.blur .popupbackground {
+    transform: scale(1);
+}
+
+.Groups.blur .title,
+.Groups.blur .list-groups,
+.Groups.blur hr {
+    filter: blur(2.5px);
 }

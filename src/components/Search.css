@@ -1,11 +1,12 @@
 .searchartist {
-    margin: 15px;
+    /* margin: 15px; */
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: flex-start; */
+    align-items: center;
     justify-content: center;
     gap: 10px;
-    width: calc(100vw - 275px);
+    width: calc(100vw - 15vw);
 }
 
 .searchartist form {
@@ -15,21 +16,28 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(220, 220, 220);
-    color: black;
+    background-color: rgb(30, 30, 30);
+    /* width: 25vw;
+    min-width: 350px; */
+    width: calc(100vw - 40px);
+    max-width: 350px;
     padding: 15px;
     border-radius: 30px;
     gap: 10px;
+    font-size: 18px;
     z-index: 99;
+}
+
+.searchartist form:focus-within {
+    border: 2px solid rgb(220, 220, 220, 0.5);
 }
 
 .searchartist form input {
     font-size: 16px;
-    color: rgb(40, 40, 40);
+    color: rgb(220, 220, 220);
     border: none;
     background-color: transparent;
-    transition: all 0.5s;
-    width: 250px;
+    width: 100%;
 }
 
 .searchartist form input:focus {
@@ -41,22 +49,32 @@
 }
 
 .searchartist .results {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
+    /* justify-content: flex-start; */
+    /* align-items: flex-start; */
+    align-items: center;
+    justify-content: space-around;
     width: calc(100vw - 275px - 20px);
     max-height: calc(100vh - 15px);
     /* margin-top: 75px; */
     padding: 10px;
-    padding-top: 75px;
+    padding-top: 90px;
     overflow-y: auto;
     overflow-x: hidden;
+    transition: all 0s;
 }
+
+/* .searchartist .results::after {
+    content: "";
+    flex: auto;
+} */
 
 .searchartist .results::-webkit-scrollbar {
     width: 15px;
 }
+
 .searchartist .results::-webkit-scrollbar-thumb {
     background: rgba(128, 128, 128, 0.5);
     border-radius: 5px;
@@ -70,14 +88,38 @@
     height: calc(100vh - 15px - 90px);
 }
 
-.searchartist .results .recenttitle {
-    position: absolute;
-    z-index: 2;
+.searchartist .results .title.recent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100vw - 275px - 20px);
+    padding: 10px;
+    opacity: 1;
+    transition: all 0.25s;
+}
+
+.searchartist .results .title {
+    display: none;
+}
+
+.searchartist .results .title .recenttitle {
+    font-size: 28px;
+}
+
+.searchartist .results .title .clearrecent {
+    font-size: 18px;
+    opacity: 0.75;
+    transition: all 0.25s;
+}
+
+.searchartist .results .title .clearrecent:hover {
+    opacity: 1;
+    cursor: pointer;
 }
 
 @property --myColor1 {
     syntax: '<color>';
-    initial-value: rgb(35, 35, 35);
+    initial-value: rgb(25, 25, 25);
     inherits: false;
 }
   
@@ -91,26 +133,29 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    /* width: 215px; */
-    width: calc((100vw - 275px - 6*30px)/6);
-    height: 285px;
-    margin: 10px;
-    padding: 20px 20px 30px 20px;
+    /* padding: 20px 20px 30px 20px; */
+    padding: 2%;
     gap: 10px;
     align-items: flex-start ;
     justify-content: center;
-    background-color: rgb(20, 20, 20);
     background-image: linear-gradient(180deg, var(--myColor1),var(--myColor2));
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 16px;
     transition: all 0.5s, --myColor1 0.25s, --myColor2 0.25s;
+    /* flex-basis: 100%; */
+    /* margin-right: auto; */
+}
+
+.searchartist .results .result.invisible {
+    pointer-events: none;
+    padding: 0px;
+    height: 0px;
 }
 
 .searchartist .results .result:hover {
     cursor: pointer;
-    --myColor1: rgb(40, 40, 40);
-    --myColor2: rgb(30, 30, 30);
-    /* transform: translateY(-2.5%); */
+    --myColor1: rgb(50, 50, 50);
+    --myColor2: rgb(40, 40, 40);
 }
 
 .searchartist .results .result div {
@@ -118,12 +163,12 @@
 }
 
 .searchartist .results .result .image {
-    width: calc((100vw - 275px - 6*70px)/6);
-    height: calc((100vw - 275px - 6*70px)/6);
-    border-radius: 87.5px;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    border-radius: 50%;
     object-fit: cover;
     background-color: rgb(40, 40, 40);
-    box-shadow: rgba(0, 0, 0, 0.35) 0 10px 10px 0px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px 0px;
 }
 
 .searchartist .results .result .fa-user {
@@ -135,10 +180,11 @@
 
 .searchartist .results .result p {
     margin-top: 10px;
-    max-width: 160px; 
+    max-width: 100%; 
     overflow: hidden; 
     text-overflow: ellipsis;
-    white-space: nowrap
+    white-space: nowrap;
+    /* font-size: 1em; */
 }
 
 .searchartist .results .result .close {
@@ -148,8 +194,8 @@
     justify-content: center;
     top: 15px;
     right: 15px;
-    height: 30px;
-    width: 30px;
+    /* height: 30px;
+    width: 30px; */
     border-radius: 50%;
     transition: all 0.25s;
 }
@@ -173,7 +219,7 @@
     height: 50px;
     width: 50px;
     font-size: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 10px 0px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 5px 10px 0px;
 }
 
 .searchartist .results .result .added {
@@ -203,4 +249,239 @@
 
 .searchartist .results .result .added.hover {
     opacity: 1;
+}
+
+@media (min-width: 0px) {
+
+    .searchartist .results::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    .searchartist .results::-webkit-scrollbar-thumb {
+        background: rgba(128, 128, 128, 0.5);
+        border-radius: 2.5px;
+    }
+
+    .searchartist {
+        width: 100vw;
+    }
+
+    .searchartist form {
+        left: 20px;
+    }
+
+    .searchartist .results {
+        width: 100vw;
+    }
+
+    .searchartist .results .title.recent {
+        margin: 0 1%;
+        width: 100vw;
+    }
+
+    .searchartist .results .title .recenttitle {
+        font-size: 20px;
+    }
+
+    .searchartist .results .title .clearrecent {
+        font-size: 14px;
+    }
+
+    .searchartist .results .result {
+        flex: 100%;
+        max-width: 100%;
+        padding: 10%;
+        font-size: 14px;
+        margin: 2.5%;
+    }
+
+    .searchartist .results .result .close {
+        font-size: 20px;
+        top: 5%;
+        right: 5%;
+        aspect-ratio: 1 / 1;
+        width: 20%;
+    }
+
+    .searchartist .results .result .add {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (min-width: 200px) {
+    .searchartist .results .result {
+        flex: 40%;
+        max-width: 40%;
+        padding: 5%;
+    }
+}
+
+@media (min-width: 500px) {
+    .searchartist .results::-webkit-scrollbar {
+        width: 15px;
+    }
+    
+    .searchartist .results::-webkit-scrollbar-thumb {
+        background: rgba(128, 128, 128, 0.5);
+        border-radius: 5px;
+    }
+
+    .searchartist .results .title .recenttitle {
+        font-size: 28px;
+    }
+
+    .searchartist .results .title .clearrecent {
+        font-size: 18px;
+    }
+    
+    .searchartist .results .result {
+        flex: 28.5%;
+        max-width: 28.5%;
+        padding: 3.5%;
+        padding-bottom: 5%;
+        margin: 2%;
+    }
+}
+
+@media (min-width: 800px) {
+
+    .searchartist {
+        width: calc(100vw - 275px);
+    }
+
+    .searchartist form {
+        left: 300px;
+    }
+
+    .searchartist .results {
+        width: calc(100vw - 275px - 20px);
+    }
+
+    .searchartist .results .title {
+        width: calc(100vw - 275px - 20px);
+    }
+
+    .searchartist .results .result {
+        flex: 27.5%;
+        max-width: 27.5%;
+        padding: 2.5%;
+    }
+
+    .searchartist .results .result .add {
+        width: 50px;
+        height: 50px;
+    }
+
+    .searchartist .results .result .added {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .searchartist .results .result {
+        flex: 21%;
+        max-width: 21%;
+        margin: 1%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .searchartist .results .result {
+        flex: 17.5%;
+        max-width: 17.5%;
+        padding: 2%;
+    }
+}
+
+@media (min-width: 1500px) {
+    .searchartist .results .result {
+        flex: 13.5%;
+        max-width: 13.5%;
+    }
+}
+
+@media (min-width: 1920px) {
+
+    .searchartist {
+        width: calc(100vw - 15vw);
+    }
+    .searchartist .results::-webkit-scrollbar {
+        width: 1vw;
+    }
+    
+    .searchartist .results::-webkit-scrollbar-thumb {
+        background: rgba(128, 128, 128, 0.5);
+        border-radius: 0.25vw;
+    }
+
+    .searchartist form {
+        top: 1.25vw;
+        left: 16.5vw;
+        max-width: unset;
+        width: 25vw;
+        height: 3vw;
+        border-radius: 1.5vw;
+        font-size: 1.1vw;
+        padding: 1vw;
+        gap: 0.75vw;
+    }
+
+    .searchartist form:focus-within {
+        border: 0.15vw solid rgb(220, 220, 220, 0.5);
+    }
+
+    .searchartist form input {
+        font-size: 1vw;
+    }
+
+    .searchartist .results {
+        padding-top: 5vw;
+        width: calc(100vw - 16.5vw);
+    }
+
+    .searchartist .results .title.recent {
+        margin: 0 0.5%;
+        width: calc(100vw - 16.5vw);
+    }
+
+    .searchartist .results .result {
+        gap: 0.5vw;
+        flex: 12.5%;
+        max-width: 12.5%;
+        margin: 0.75%;
+        padding: 1.5%;
+        padding-bottom: 2%;
+        font-size: 0.8vw;
+        border-radius: 2.5%;
+    }
+
+    .searchartist .results .result .close {
+        font-size: 1vw;
+        top: 5%;
+        right: 5%;
+        aspect-ratio: 1 / 1;
+        width: 17.5%;
+    }
+
+    .searchartist .results .result .add {
+        height: 2.75vw;
+        width: 2.75vw;
+        font-size: 1vw;
+    }
+
+    .searchartist .results .result .added {
+        width: 2.5vw;
+        height: 2.5vw;
+        font-size: 1vw;
+    }
+
+    .searchartist .results .title .recenttitle {
+        font-size: 1.5vw;
+    }
+
+    .searchartist .results .title .clearrecent {
+        font-size: 1vw;
+    }
 }

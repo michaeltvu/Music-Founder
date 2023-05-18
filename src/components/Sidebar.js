@@ -1,19 +1,61 @@
-import React from "react";
-//import { NavLink } from "react-router-dom";
+import React, { useState, useEffect} from "react";
+import axios from "axios";
 import {  signOut } from "firebase/auth";
 import {auth} from '../admin/firebase.js';
 import { useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 
 function Sidebar(props) {
-
     const navigate = useNavigate();
+    const [topArtist, setTopArtist] = useState();
+    const [worstArtist, setWorstArtist] = useState();
+    const [scores, setScores] = useState();
+
+    useEffect(() => {
+        if (props.token) {
+            let artists = JSON.parse(JSON.stringify(props.user.artists));
+            artists.sort((a, b) => (a.score - a.originalscore) - (b.score - b.originalscore))
+            setWorst(artists[0].artistid);
+            setTop(artists[artists.length-1].artistid);
+            setScores([artists[0].score - artists[0].originalscore, artists[artists.length-1].score - artists[artists.length-1].originalscore]);
+        }
+    }, [])
+
+
+    async function setTop(artistid) {
+        try {
+            const url = `https://api.spotify.com/v1/artists/${artistid}`
+            const response = await axios.get(url, {
+                headers: {
+                    'Authorization': `Bearer ${props.token}`
+                }
+            });
+            setTopArtist(response.data);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function setWorst(artistid) {
+        try {
+            const url = `https://api.spotify.com/v1/artists/${artistid}`
+            const response = await axios.get(url, {
+                headers: {
+                    'Authorization': `Bearer ${props.token}`
+                }
+            });
+            setWorstArtist(response.data);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
  
-    const logOut = () => {        
+    const logOut = () => {
         const bottom = document.querySelector('.sidebar .user .bottom');
         if(!bottom.classList.contains('closed')) {
             signOut(auth).then(() => {
-                // navigate("/login");
                 console.log("Signed out successfully")
             }).catch((error) => {
                 console.log(error)
@@ -21,30 +63,8 @@ function Sidebar(props) {
         }
     }
 
-    const bestartist = {name: "Yeat", listeners: 12017971, ogstreams: 7.9, daily: 55222, invested: 109, img: "https://i.scdn.co/image/ab6761610000e5eb163e4c3a83061dda3aac5d81", genre: "Vapor rap"}
-    const worstartist = {name: "Playboi", listeners: 16171558, ogstreams: 12.9, daily: -7975, invested: 150, img: "https://i.scdn.co/image/ab6761610000e5eb504ff11d788162fbf8078654", genre: "Trap"}
-    function sharePrice(listeners) {
-        return (listeners/250000).toFixed(2);
-    }
-
-    function dailyPercent(listeners, daily) {
-        return Math.abs((daily*100/listeners).toFixed(2));
-    }
-
-    function dailyShare(listeners, daily) {
-        return (sharePrice(listeners) * Math.abs((daily*100/listeners))).toFixed(2);
-    }
-
-    const expandLink = () => {
-        let expandlink = document.getElementsByClassName('expandlink')[0];
-        let bx = document.querySelector('.expandlink .openorclose');
-        bx.classList.toggle('bx-chevron-down');
-        bx.classList.toggle('bx-chevron-up');
-        expandlink.classList.toggle('open');
-    }
-
     const clickLink = (type) => {
-        let buttons = document.querySelectorAll('.menu .link-button');
+        let buttons = document.querySelectorAll('.menu .link');
         buttons.forEach(element => {
             if (element.classList.contains(type)) {
                 element.classList.add('open');
@@ -53,12 +73,6 @@ function Sidebar(props) {
                 element.classList.remove('open');
             }
         });
-        if(type === 'top' || type === 'rising' || type === 'search') {
-            document.querySelector('.menu .expandlink .link').classList.add('child-open');
-        }
-        else {
-            document.querySelector('.menu .expandlink .link').classList.remove('child-open');
-        }
         if(type === 'home') {
             navigate('/');
         }
@@ -67,12 +81,17 @@ function Sidebar(props) {
         }
     }
 
+    const clickArtist = (artistid) => {
+        navigate(`/artist/${artistid}`)
+    }
+
     const clickProfile = () => {
-        const bottom = document.querySelector('.sidebar .user .bottom');
-        const button = document.querySelector('.sidebar .user .top .expand');
-        bottom.classList.toggle('closed');
-        button.classList.toggle('fa-chevron-down');
-        button.classList.toggle('fa-chevron-up')
+        navigate(`/user/${props.user.username}`)
+    }
+
+    const getUserColor = (name) => {
+        const colors = [[103, 97, 168], [242, 100, 48], [0, 157, 220], [0, 155, 114], [42, 95, 152], [166, 212, 159], [216, 49, 91], [30, 27, 24]];
+        return colors[(name.charCodeAt(0) + name.charCodeAt(name.length-1))%8];
     }
 
     return(
@@ -81,87 +100,51 @@ function Sidebar(props) {
                 <i className="fa-solid fa-headphones-simple icon"></i>
                 <p className="logo-name">overground</p>
             </div>
-            <ul className="nav-list">
-                <li className="artists">
+            <div className="nav-list">
+                <div className="artists">
                     <label className="title">WATCHLIST</label>
-                    <div className="artist">
-                        <div className="info">
-                            <img className="img" src={bestartist.img} alt={bestartist.name}/>
+                    {topArtist ? <div className="artist" onClick={() => clickArtist(topArtist.id)}>
+                        <span className="info">
+                            {topArtist.images.length ? <img className="image" src={topArtist.images[0].url} alt={topArtist.name}/> : <i className="fa-solid fa-user image"></i>}
                             <div className="text">
-                                <label className="name">{bestartist.name}</label>
-                                <label className="share">{sharePrice(bestartist.listeners)}</label>
+                                <p className="name">{topArtist.name}</p>
+                                <span className="popularity">{topArtist.popularity}<i className="fa-solid fa-fire-flame-curved"></i></span>
                             </div>
-                        </div>
-                        <span className="change">
-                            <label className={"currency " + (bestartist.daily > 0 ? "pos" : "neg")}>{bestartist.daily > 0 ? '+' + dailyShare(bestartist.listeners, bestartist.daily):' -' + dailyShare(bestartist.listeners, bestartist.daily)}</label>
-                            <label className={"percent " + (bestartist.daily > 0 ? "pos" : "neg")}>{bestartist.daily > 0 ? '+' + dailyPercent(bestartist.listeners, bestartist.daily) + '%' :' -' + dailyPercent(bestartist.listeners, bestartist.daily) + '%'}</label>
                         </span>
-                    </div>
-                    <div className="artist">
-                        <div className="info">
-                            <img className="img" src={worstartist.img} alt={worstartist.name}/>
+                        <span className="score">{scores[1] < 0 ? scores[1] : '+'+ Math.abs(scores[1])}<i className={scores[1] < 0 ? "fa-solid fa-snowflake" : "fa-solid fa-fire-flame-curved"}></i></span>
+                    </div> : null}
+                    {worstArtist ? <div className="artist" onClick={() => clickArtist(worstArtist.id)}>
+                    <span className="info">
+                            {worstArtist.images.length ? <img className="image" src={worstArtist.images[0].url} alt={worstArtist.name}/> : <i className="fa-solid fa-user image"></i>}
                             <div className="text">
-                                <label className="name">{worstartist.name}</label>
-                                <label className="share">{sharePrice(worstartist.listeners)}</label>
+                                <p className="name">{worstArtist.name}</p>
+                                <span className="popularity">{worstArtist.popularity}<i className="fa-solid fa-fire-flame-curved"></i></span>
                             </div>
-                        </div>
-                        <span className="change">
-                            <label className={"currency " + (worstartist.daily > 0 ? "pos" : "neg")}>{worstartist.daily > 0 ? '+' + dailyShare(worstartist.listeners, worstartist.daily):' -' + dailyShare(worstartist.listeners, worstartist.daily)}</label>
-                            <label className={"percent " + (worstartist.daily > 0 ? "pos" : "neg")}>{worstartist.daily > 0 ? '+' + dailyPercent(worstartist.listeners, worstartist.daily) + '%' :' -' + dailyPercent(worstartist.listeners, worstartist.daily) + '%'}</label>
                         </span>
-                    </div>
-                </li>
-                <li className="menu">
+                        <span className="score">{scores[0] < 0 ? scores[0] : '+'+ Math.abs(scores[0])}<i className={scores[0] < 0 ? "fa-solid fa-snowflake" : "fa-solid fa-fire-flame-curved"}></i></span>
+                    </div> : null}
+                </div>
+                <div className="menu">
                     <label className="title">MAIN MENU</label>
-                    <ul>
-                        <li className="home link-button" onClick={() => clickLink('home')}>
-                            <span className="link"><i className="fa-solid fa-house"></i>home</span>
-                        </li>
-                        <li className="expandlink">
-                            <div className="link" onClick={expandLink}>
-                                <span><i className="fa-solid fa-compact-disc"></i>artists</span>
-                                <i className='openorclose bx bx-chevron-down'></i>
-                            </div>
-                            <div className="expandedlink">
-                                <hr/>
-                                <ul>
-                                    <li className="top link-button" onClick={() => clickLink('top')}><label>top artists</label></li>
-                                    <li className="rising link-button" onClick={() => clickLink('rising')}><label>rising artists</label></li>
-                                    <li className="search link-button" onClick={() => clickLink('search')}><label>search</label></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li className="groups link-button" onClick={() => clickLink('groups')}>
-                            <span className="link"><i className="fa-solid fa-users"></i>groups</span>
-                        </li>
-                        <li className="settings link-button" onClick={() => clickLink('settings')}>
-                            <span className="link"><i className="fa-solid fa-gear"></i>settings</span>
-                        </li>
-                    </ul>
-                </li>
-                <div className="user">
-                    <span className="top">
-                        <span className="profile">
-                            {props.user.img ? <img className="image" src={props.user.img}/> : <i className="image fa-solid fa-user"></i>}
-                            <p>{props.user.username}</p>
-                        </span>
-                        <i className="fa-solid fa-chevron-up expand" onClick={clickProfile}></i>
-                    </span>
-                    <div className="bottom closed">
-                        <hr/>
-                        <div className="options">
-                            {/* <span className="viewprofile">
-                                <p>copy user</p>
-                                <i class="fa-solid fa-copy"></i>
-                            </span> */}
-                            <span className="logout" onClick={logOut}>
-                                <p>sign out</p>
-                                <i className="fa-solid fa-right-from-bracket"></i>
-                            </span>
-                        </div>
+                    <div className="links">
+                        <span className="home link" onClick={() => clickLink('home')}><i className="fa-solid fa-house"></i>home</span>
+                        <span className="search link" onClick={() => clickLink('search')}><i className="fa-solid fa-magnifying-glass"></i>search</span>
+                        <span className="top link" onClick={() => clickLink('top')}><i className="fa-solid fa-chart-column"></i>top</span>
+                        <span className="groups link" onClick={() => clickLink('groups')}><i className="fa-solid fa-users"></i>groups</span>
+                        <span className="settings link" onClick={() => clickLink('settings')}><i className="fa-solid fa-gear"></i>settings</span>
                     </div>
                 </div>
-            </ul>
+                <div className="user" onClick={clickProfile}>
+                    <span className="profile">
+                        {props.user.img ? <img className="image" src={props.user.img} alt={props.user.username}/> : <i className="image fa-solid fa-user" style={{color: `rgb(${getUserColor(props.user.username)}, 0.5)`}}></i>}
+                        <p>{props.user.username}</p>
+                    </span>
+                    <span className="change">
+                            <p>{Math.abs(props.user.score)}</p>
+                            <i className={props.user.score >= 0 ? "fa-solid fa-fire-flame-curved" : "fa-solid fa-snowflake"}></i>
+                    </span>
+                </div>
+            </div>
         </div>
     );
 }

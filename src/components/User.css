@@ -1,0 +1,524 @@
+.userpage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: calc(100vw - 275px);
+    /* overflow-y: auto; */
+    /* border: 1px dotted red; */
+    /* padding: 20px; */
+    /* margin-bottom: 20px; */
+    margin-bottom: 20px;
+}
+
+.userpage .usermusic .artists::-webkit-scrollbar {
+    width: 5px;
+}
+
+.userpage .usermusic .artists::-webkit-scrollbar-thumb {
+    background: rgba(128, 128, 128, 0.5);
+    border-radius: 2.5px;
+}
+
+.userpage .userbox {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    align-items: flex-start;
+    justify-content: center;
+    width: 1265px;
+    /* overflow: auto; */
+    border-radius: 30px;
+    /* border: 1px dotted red; */
+}
+
+.userpage .userinfo {
+    position: relative;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    gap: 40px;
+    /* background-color: rgb(35, 35, 35); */
+    /* background-image: linear-gradient(180deg, var(--artistcolor1),var(--artistcolor2)); */
+    padding: 30px;
+    border-radius: 25px;
+    width: 1265px;
+    z-index: 9;
+}
+
+.userpage .userinfo .sub {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.userpage .userinfo .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    height: 175px;
+    width: 175px;
+    /* border-radius: 50%; */
+    background-color: rgb(50, 50, 50);
+    box-shadow: rgba(0, 0, 0, 0.75) 0 10px 10px 0px;
+}
+
+.userpage .userinfo .name {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 48px;
+    padding: 0px 40px 0px 0px;
+}
+
+.userpage .userinfo .name p {
+    text-align: start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* max-width: 210px; */
+}
+
+.userpage .userinfo .friends {
+    font-size: 14px;
+}
+
+.userpage .userinfo:hover .name .spotify {
+    /* transform: translateX(5%); */
+    opacity: 1;
+}
+
+.userpage .userinfo .name .spotify:hover {
+    transform: translateY(-5%);
+    cursor: pointer;
+}
+
+.userpage .userinfo .score {
+    display: flex;
+    /* flex-direction: column; */
+    position: absolute;
+    right: 30px;
+    /* border: 1px dotted red; */
+    gap: 5px;
+    align-items: center;
+    font-size: 40px;
+}
+
+.userpage .userinfo .score .fa-fire-flame-curved {
+    font-size: 32px;
+    color: rgb(255, 186, 125);
+}
+
+.userpage .userinfo .score .fa-snowflake {
+    color: rgb(123, 200, 228);
+}
+
+.userpage .userbox .userinfo .otherbuttons {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    gap: 10px;
+}
+
+.userpage .userbox .userinfo .add {
+    font-size: 14px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    transition: transform 0.25s;
+    /* margin-top: 5px; */
+}
+
+.userpage .userbox .userinfo .remove {
+    font-size: 14px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    background-color: rgb(255, 138, 138);
+    color: black;
+    border-radius: 5px;
+    transition: transform 0.25s;
+    /* margin-top: 5px; */
+}
+
+.userpage .userinfo .add:hover,
+.userpage .userinfo .remove:hover {
+    transform: translateY(-20%);
+    cursor: pointer;
+}
+
+.userpage .usermusic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    padding: 20px;
+    /* border: 5px solid rgb(45, 45, 45); */
+    /* background-color: black; */
+    border-radius: 30px;
+}
+
+.userpage .usermusic .collection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.userpage .usermusic .collection .title {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 20px;
+}
+
+.userpage .usermusic .collection .sort {
+    color: rgb(170, 170, 170);
+    font-size: 14px;
+}
+
+.userpage .usermusic .collection .sort:hover {
+    cursor: pointer;
+}
+
+.userpage .usermusic .collection .sort-menu {
+    display: none;
+}
+
+.userpage .usermusic .collection .sort-menu.open {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    /* height: 100px; */
+    width: 150px;
+    border-radius: 5px;
+    background-color: rgb(20, 20, 20);
+    right: -5px;
+    bottom: 25px;
+    z-index: 99;
+    font-size: 14px;
+    padding: 10px;
+    /* gap: 10px; */
+}
+
+.userpage .usermusic .collection .sort-menu hr {
+    width: 100%;
+    border: 1px solid rgb(199, 199, 199);
+    margin-bottom: 5px;
+}
+
+.userpage .usermusic .collection .sort-menu p {
+    padding: 0px 5px;
+    margin: 7.5px 0px;
+}
+
+.userpage .usermusic .collection .sort-menu .sort-by {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    width: 100%;
+    color: rgb(150, 150, 150);
+    border-radius: 2px;
+    margin: 10px 0px;
+}
+
+.userpage .usermusic .collection .sort-menu .sort-by:hover {
+    cursor: pointer;
+    color: rgb(199, 199, 199);
+}
+
+.userpage .usermusic .collection .sort-menu .sort-by.selected {
+    color: rgb(199, 199, 199);
+    background-color: rgb(70, 70, 70);
+    padding: 10px 5px;
+    margin: 0px;
+}
+
+.userpage .usermusic .collection .sort-menu .sort-by i {
+    opacity: 0;
+}
+
+.userpage .usermusic .collection .sort-menu .sort-by.selected i {
+    opacity: 1;
+}
+
+.userpage .usermusic .artists {
+    display: flex;
+    /* align-items: flex-start; */
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    max-height: 400px;
+    min-height: 400px;
+    overflow-y: auto;
+    padding-top: 10px;
+    padding-right: 10px;
+    /* padding: 10px 10px 0px 10px; */
+}
+
+.userpage .usermusic .artists .artist {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5px;
+    font-size: 14px;
+    /* height: 190px; */
+    /* width: 175px; */
+    padding: 30px;
+    border-radius: 20px;
+    background-image: linear-gradient(180deg, var(--artistcolor1),var(--artistcolor2));
+    transition: transform 0.25s, --artistcolor1 0.25s, --artistcolor2 0.25s;
+    box-shadow: rgba(255, 255, 255, 0.025) 0 0px 20px 0px;
+}
+
+.userpage .usermusic .artists .artist.invisible {
+    pointer-events: none;
+    opacity: 0;
+    height: 0px;
+    margin: 0;
+}
+
+.userpage .usermusic .toptracks .track:hover,
+.userpage .usermusic .albums .album:hover,
+.userpage .usermusic .artists .artist:hover {
+    cursor: pointer;
+    --artistcolor1: rgb(45, 45, 45);
+    --artistcolor2: rgb(25, 25, 25);
+    transform: translateY(-2.5%);
+}
+
+.userpage .usermusic .artists .artist .image {
+    height: 125px;
+    width: 125px;
+    border-radius: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: rgb(40, 40, 40);
+    background-color: rgb(70, 70, 70);
+    box-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px 0px;
+}
+
+.userpage .usermusic .artists .artist .name {
+    font-size: 16px;
+    text-align: start;
+    max-width: 125px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+}
+
+.userpage .usermusic .artists .artist .popularity {
+    display: flex;
+    gap: 3px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    font-size: 14px;
+}
+
+.userpage .usermusic .artists .artist .popularity .fa-fire-flame-curved {
+    color: rgb(255, 186, 125);
+}
+
+.userpage .usermusic .artists .artist .added {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.userpage .usermusic .artists .artist .added .addedpopularity {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    color: rgb(120, 120, 120);
+}
+
+.userpage .usermusic .artists .artist .added .addeddate {
+    font-size: 12px;
+    color: rgb(120, 120, 120);
+}
+
+@property --artistcolor1 {
+    syntax: '<color>';
+    initial-value: rgb(25, 25, 25);
+    inherits: false;
+}
+  
+@property --artistcolor2 {
+    syntax: '<color>';
+    initial-value: rgb(15, 15, 15);
+    inherits: false;
+}
+
+@media (min-width: 1920px) {
+    .userpage {
+        width: calc(100vw - 15vw);
+    }
+
+    .userpage .userbox {
+        width: calc(100vw - 22.5vw);
+        border-radius: 0.5vw;
+    }
+
+    .userpage .userbox .userinfo {
+        padding: 2vw 2vw 1vw 2vw;
+        width: calc(100vw - 22.5vw);
+    }
+
+    .userpage .userinfo .image {
+        height: 10vw;
+        width: 10vw;
+        font-size: 4vw;
+    }
+
+    .userpage .userinfo .name {
+        font-size: 3vw;
+    }
+    
+    .userpage .userinfo .friends {
+        font-size: 0.9vw;
+    }
+    
+    .userpage .userinfo .score {
+        right: 2vw;
+        gap: 0.25vw;
+    }
+    
+    .userpage .userinfo .score {
+        gap: 0.25vw;
+        font-size: 2.5vw;
+    }
+    
+    .userpage .userinfo .score i {
+        font-size: 2vw;
+    }
+    
+    .userpage .userbox .userinfo .add {
+        margin-top: 0.5vw;
+        font-size: 0.75vw;
+        gap: 0.5vw;
+        padding: 0.5vw 1vw;
+        border-radius: 0.25vw;
+    }
+    
+    .userpage .userbox .userinfo .remove {
+        margin-top: 0.5vw;
+        font-size: 0.75vw;
+        gap: 0.5vw;
+        padding: 0.5vw 1vw;
+        border-radius: 0.25vw;
+    }
+
+    .userpage .usermusic {
+        padding: 1vw 2vw 2vw 2vw;
+    }
+    
+    .userpage .usermusic .collection .title {
+        font-size: 1.25vw;
+    }
+
+    .userpage .usermusic .collection .sort {
+        font-size: 0.75vw;
+    }
+    
+    .userpage .usermusic .collection .sort-menu.open {
+        width: 7.5vw;
+        border-radius: 0.25vw;
+        right: -0.5vw;
+        bottom: 1.5vw;
+        font-size: 0.7vw;
+        padding: 0.5vw;
+    }
+    
+    .userpage .usermusic .collection .sort-menu hr {
+        border: 0.1vw solid rgb(199, 199, 199);
+        margin-bottom: 0.25vw;
+    }
+    
+    .userpage .usermusic .collection .sort-menu p {
+        padding: 0 0.25vw;
+        margin: 0.4vw 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by {
+        border-radius: 0.1vw;
+        margin: 0.6vw 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by.selected {
+        padding: 0.5vw 0.25vw;
+    }
+    
+    .userpage .usermusic .artists {
+        gap: 0.75vw;
+        width: calc(100vw - 26vw);
+        max-height: 27.65vw;
+        padding-top: 0.5vw;
+        padding-right: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist {
+        gap: 0.5vw;
+        font-size: 0.75vw;
+        width: 9.5vw;
+        padding: 1.5%;
+        border-radius: 0.25vw;
+    }
+    
+    .userpage .usermusic .artists .artist .image {
+        width: 100%;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+    
+    .userpage .usermusic .artists .artist .image {
+        border-radius: 50%;
+    }
+    
+    .userpage .usermusic .artists .artist p {
+        max-width: 100%;
+    }
+
+    .userpage .usermusic .artists .artist .name {
+        max-width: 100%;
+        font-size: 0.75vw;
+        margin-top: 0.1vw;
+    }
+    
+    .userpage .usermusic .artists .artist .popularity {
+        gap: 0.25vw;
+        top: 0.75vw;
+        right: 0.5vw;
+        font-size: 0.75vw;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addedpopularity {
+        font-size: 0.65vw;
+        gap: 0.25vw;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addeddate {
+        font-size: 0.65vw;
+    }
+}

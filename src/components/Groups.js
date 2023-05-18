@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import './Groups.css'
 
 export function Groups(props) {
+    const [popup, setPopup] = useState(false);
     const group = {
         name: 'the shiesties',
         img: 'https://m.media-amazon.com/images/I/51lEcOTymgL._UXNaN_FMjpg_QL85_.jpg',
@@ -10,8 +11,12 @@ export function Groups(props) {
     }
     const groups = [group]
 
+    const openPopup = () => {
+        setPopup(!popup);
+    }
+
     return(
-        <div className="Groups">
+        <div className={"Groups " + (popup ? 'blur' : '')}>
             <span className="title">
                 <i className="fa-solid fa-users"></i>
                 groups
@@ -35,18 +40,19 @@ export function Groups(props) {
             <hr/>
             <div className="new-group">
                 {/* <p>join or create a group</p> */}
-                {/* <span className="create-group">
+                <span className="create-group" onClick={openPopup}>
                     <p>create</p>
                     <i className="fa-solid fa-pencil"></i>
                 </span>
-                <span className="join-group">
+                {/* <span className="join-group">
                     <p>join</p>
                     <i className="fa-solid fa-plus"></i>
                 </span> */}
             </div>
             <div className="popupbackground">
                 <div className="popup">
-                    <i className="fa-solid fa-xmark close"></i>
+                    <i className="fa-solid fa-xmark close" onClick={openPopup}></i>
+                    
                 </div>
             </div>
         </div>
