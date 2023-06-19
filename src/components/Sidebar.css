@@ -314,7 +314,7 @@
     }
     
     .sidebar .nav-list .artists .artist .info .name {
-        width: 100px;
+        width: 6vw;
     }
     
     .sidebar .nav-list .artists .artist .score {
@@ -327,6 +327,10 @@
         height: 1.75vw;
         width: 1.75vw;
         border-radius: 50%;
+    }
+
+    .sidebar .nav-list .menu {
+        gap: 0.5vw;
     }
 
     .sidebar .nav-list .menu .links {
@@ -350,6 +354,7 @@
     }
 
     .sidebar .logo-details {
+        top: 2vh;
         gap: 0.5vw;
     }
 
@@ -392,5 +397,11 @@
         width: 1.5vw;
         height: 1.5vw;
         border-radius: 1vw;
+    }
+}
+
+@media (max-height: 600px) {
+    .sidebar .nav-list .artists {
+        display: none;
     }
 }

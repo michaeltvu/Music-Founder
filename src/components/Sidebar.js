@@ -1,33 +1,68 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
+import qs from "qs";
+import { Buffer } from "buffer";
 import {  signOut } from "firebase/auth";
 import {auth} from '../admin/firebase.js';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Sidebar.css';
 
 function Sidebar(props) {
     const navigate = useNavigate();
+    const location = useLocation();
     const [topArtist, setTopArtist] = useState();
     const [worstArtist, setWorstArtist] = useState();
     const [scores, setScores] = useState();
+    const [token, setToken] = useState();
+    const [page, setPage] = useState('home');
 
     useEffect(() => {
-        if (props.token) {
+        if (location.pathname.split('/').length > 1) {
+            if (location.pathname.split('/')[1] === '') {
+                setPage('home')
+            }
+            else {
+                setPage(location.pathname.split('/')[1]);
+            }
+        }
+        if (!token) {
+            getAccessToken();
+        }
+        else {
             let artists = JSON.parse(JSON.stringify(props.user.artists));
             artists.sort((a, b) => (a.score - a.originalscore) - (b.score - b.originalscore))
             setWorst(artists[0].artistid);
             setTop(artists[artists.length-1].artistid);
             setScores([artists[0].score - artists[0].originalscore, artists[artists.length-1].score - artists[artists.length-1].originalscore]);
         }
-    }, [])
+    }, [token])
 
+    async function getAccessToken() {
+        try {
+            const client_id = 'ef30825fefca4fc2930a17f01a5800a1';
+            const client_secret = '048730d76cda4d09844001110e55bad6';
+            const data = qs.stringify({'grant_type':'client_credentials'});
+            const url = 'https://accounts.spotify.com/api/token';
+            let res = await axios.post(url, data, {
+                headers: {
+                    'Authorization': `Basic ${(new Buffer.from(client_id + ':' + client_secret).toString('base64'))}`,
+                    'Content-Type': 'application/x-www-form-urlencoded' 
+                }
+            })
+            setToken(res.data.access_token);
+        }
+        catch (error) {
+            console.log(error);
+            return;
+        }
+    }
 
     async function setTop(artistid) {
         try {
             const url = `https://api.spotify.com/v1/artists/${artistid}`
             const response = await axios.get(url, {
                 headers: {
-                    'Authorization': `Bearer ${props.token}`
+                    'Authorization': `Bearer ${token}`
                 }
             });
             setTopArtist(response.data);
@@ -42,7 +77,7 @@ function Sidebar(props) {
             const url = `https://api.spotify.com/v1/artists/${artistid}`
             const response = await axios.get(url, {
                 headers: {
-                    'Authorization': `Bearer ${props.token}`
+                    'Authorization': `Bearer ${token}`
                 }
             });
             setWorstArtist(response.data);
@@ -64,20 +99,14 @@ function Sidebar(props) {
     }
 
     const clickLink = (type) => {
-        let buttons = document.querySelectorAll('.menu .link');
-        buttons.forEach(element => {
-            if (element.classList.contains(type)) {
-                element.classList.add('open');
+        if (page !== type || type === 'search') {
+            setPage(type);
+            if(type === 'home') {
+                navigate('/');
             }
             else {
-                element.classList.remove('open');
+                navigate(`/${type}`);
             }
-        });
-        if(type === 'home') {
-            navigate('/');
-        }
-        else {
-            navigate(`/${type}`);
         }
     }
 
@@ -125,13 +154,13 @@ function Sidebar(props) {
                     </div> : null}
                 </div>
                 <div className="menu">
-                    <label className="title">MAIN MENU</label>
+                    <label className="title">MENU</label>
                     <div className="links">
-                        <span className="home link" onClick={() => clickLink('home')}><i className="fa-solid fa-house"></i>home</span>
-                        <span className="search link" onClick={() => clickLink('search')}><i className="fa-solid fa-magnifying-glass"></i>search</span>
-                        <span className="top link" onClick={() => clickLink('top')}><i className="fa-solid fa-chart-column"></i>top</span>
-                        <span className="groups link" onClick={() => clickLink('groups')}><i className="fa-solid fa-users"></i>groups</span>
-                        <span className="settings link" onClick={() => clickLink('settings')}><i className="fa-solid fa-gear"></i>settings</span>
+                        <span className={"home link " + (page === 'home' ? "open" : "")} onClick={() => clickLink('home')}><i className="fa-solid fa-house"></i>home</span>
+                        <span className={"search link " + (page === 'search' ? "open" : "")} onClick={() => clickLink('search')}><i className="fa-solid fa-magnifying-glass"></i>search</span>
+                        {/* <span className={"top link " + (page === 'top' ? "open" : "")} onClick={() => clickLink('top')}><i className="fa-solid fa-chart-column"></i>top</span> */}
+                        <span className={"groups link " + (page === 'groups' ? "open" : "")} onClick={() => clickLink('groups')}><i className="fa-solid fa-users"></i>groups</span>
+                        <span className={"settings link " + (page === 'settings' ? "open" : "")} onClick={() => clickLink('settings')}><i className="fa-solid fa-gear"></i>settings</span>
                     </div>
                 </div>
                 <div className="user" onClick={clickProfile}>

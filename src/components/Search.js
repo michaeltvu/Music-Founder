@@ -1,21 +1,26 @@
 import React, {useState, useEffect} from "react";
 import './Search.css'
 import axios from "axios";
+import qs from 'qs';
+import { Buffer } from "buffer";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from '../admin/firebase.js';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { click } from "@testing-library/user-event/dist/click";
 
 export function Search(props) {
     const navigate = useNavigate();
     const location = useLocation();
+    const [token, setToken] = useState();
     const [artists, updateArtists] = useState([]);
     const [searchTerm, updateSearchTerm] = useState('');
     const [loading, setLoading] = useState(false);
     const [recentSearches, setRecentSearches] = useState([]);
 
     useEffect(() => {
-        if (props.token) {
+        if (!token) {
+            getAccessToken();
+        }
+        else {
             let recent = JSON.parse(localStorage.getItem(props.user.uid + ': recentsearches'));
             if (recent) {
                 setRecentSearches(recent);
@@ -34,7 +39,27 @@ export function Search(props) {
                 clickX();
             }
         }
-    }, [props.token, props.user.uid, location.pathname])
+    }, [props.user.uid, location.pathname, token])
+    
+    async function getAccessToken() {
+        try {
+            const client_id = 'ef30825fefca4fc2930a17f01a5800a1';
+            const client_secret = '048730d76cda4d09844001110e55bad6';
+            const data = qs.stringify({'grant_type':'client_credentials'});
+            const url = 'https://accounts.spotify.com/api/token';
+            let res = await axios.post(url, data, {
+                headers: {
+                    'Authorization': `Basic ${(new Buffer.from(client_id + ':' + client_secret).toString('base64'))}`,
+                    'Content-Type': 'application/x-www-form-urlencoded' 
+                }
+            })
+            setToken(res.data.access_token);
+        }
+        catch (error) {
+            console.log(error);
+            return;
+        }
+    }
     
     async function getArtists(event, search) {
         if (event) {
@@ -42,9 +67,8 @@ export function Search(props) {
         }
         props.refreshUser(props.user.uid);
         setLoading(true);
-        // updateArtists([]);
         try {
-            const token = props.token;
+            console.log(token)
             const url = `https://api.spotify.com/v1/search?query=${search}&type=artist&offset=0&limit=21`
             const response = await axios.get(url, {
                 headers: {
@@ -91,7 +115,9 @@ export function Search(props) {
     }
 
     const clickRecentSearch = (index) => {
-        setRecents(index);
+        // setRecents(index);
+        let recents = JSON.parse(localStorage.getItem(props.user.uid + ': recentsearches'));
+        navigate(`/artist/${recents[index].id}`);
     }
 
     const removeRecentSearch = (e, index) => {

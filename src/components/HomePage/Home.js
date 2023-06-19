@@ -168,15 +168,15 @@ function Home() {
     if(user) {
         return(
             <div className="Home">
-                <Sidebar user={user} token={token}/>
+                <Sidebar user={user}/>
                 <div className="center">
                     <div className="main-page">
                         {/* {mainpage} */}
                         <Routes>
                             <Route path="/groups" element={<div className="social"><Groups user={user}/> <Friends user={user} refreshUser={getUser}/></div>}/>
-                            <Route path="/search/*" element={<Search user={user} refreshUser={getUser} token={token}/>}/>
-                            <Route path="/artist/*" element={<Artist user={user} token={token} refreshUser={getUser}/>}/>
-                            <Route path="/user/*" element={<User user={user} token={token} refreshUser={getUser}/>}/>
+                            <Route path="/search/*" element={<Search user={user} refreshUser={getUser}/>}/>
+                            <Route path="/artist/*" element={<Artist user={user} refreshUser={getUser}/>}/>
+                            <Route path="/user/*" element={<User user={user} refreshUser={getUser}/>}/>
                         </Routes>
                     </div>
                 </div>

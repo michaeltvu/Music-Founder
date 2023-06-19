@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import qs from 'qs';
+import { Buffer } from "buffer";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from '../admin/firebase.js';
@@ -10,6 +12,7 @@ import "./Artist.css";
 export function Artist(props) {
     const navigate = useNavigate();
     const location = useLocation();
+    const [token, setToken] = useState();
     const [tracks, setTracks] = useState([]);
     const [albums, setAlbums] = useState([]);
     const [relatedartists, setRelatedArtists] = useState([]);
@@ -28,7 +31,10 @@ export function Artist(props) {
         // if (artist) {
         //     props.updateArtist(artist.id);
         // }
-        if (props.token) {
+        if (!token) {
+            getAccessToken();
+        }
+        else {
             if (location.pathname.split('/').length === 3) {
                 const artistid = location.pathname.split('/')[2]
                 setAdded(props.user.artists.map((artist, index) => artist.artistid).indexOf(artistid));
@@ -38,9 +44,27 @@ export function Artist(props) {
                 getRelatedArtists(artistid);
             }
         }
-        else {
+    }, [props, token]);
+
+    async function getAccessToken() {
+        try {
+            const client_id = 'ef30825fefca4fc2930a17f01a5800a1';
+            const client_secret = '048730d76cda4d09844001110e55bad6';
+            const data = qs.stringify({'grant_type':'client_credentials'});
+            const url = 'https://accounts.spotify.com/api/token';
+            let res = await axios.post(url, data, {
+                headers: {
+                    'Authorization': `Basic ${(new Buffer.from(client_id + ':' + client_secret).toString('base64'))}`,
+                    'Content-Type': 'application/x-www-form-urlencoded' 
+                }
+            })
+            setToken(res.data.access_token);
         }
-    }, [props]);
+        catch (error) {
+            console.log(error);
+            return;
+        }
+    }
 
     const getPalette = (url) => {
         return new Promise(resolve => {
@@ -60,7 +84,7 @@ export function Artist(props) {
             const url = `https://api.spotify.com/v1/artists/${artistid}`
             const response = await axios.get(url, {
                 headers: {
-                    'Authorization': `Bearer ${props.token}`
+                    'Authorization': `Bearer ${token}`
                 }
             });
             setArtist(response.data);
@@ -81,7 +105,7 @@ export function Artist(props) {
             const url = `https://api.spotify.com/v1/artists/${artistid}/top-tracks?market=US`
             const response = await axios.get(url, {
                 headers: {
-                    'Authorization': `Bearer ${props.token}`
+                    'Authorization': `Bearer ${token}`
                 }
             });
             setTracks(response.data.tracks);
@@ -99,7 +123,7 @@ export function Artist(props) {
             const url = `https://api.spotify.com/v1/artists/${artistid}/albums`
             const response = await axios.get(url, {
                 headers: {
-                    'Authorization': `Bearer ${props.token}`
+                    'Authorization': `Bearer ${token}`
                 }
             });
             // .filter(album => album.album_group === "album");
@@ -126,7 +150,7 @@ export function Artist(props) {
             const url = `https://api.spotify.com/v1/artists/${artistid}/related-artists`
             const response = await axios.get(url, {
                 headers: {
-                    'Authorization': `Bearer ${props.token}`
+                    'Authorization': `Bearer ${token}`
                 }
             });
             setRelatedArtists(response.data.artists);
@@ -200,8 +224,8 @@ export function Artist(props) {
 
     if (!loadingArtist && !loadingTracks && !loadingAlbums && !loadingRelated) {
         return(
-            <div className="artistpage">
-                <div className="artistbox"  style={{backgroundImage: `linear-gradient(0deg, rgb(30, 30, 30), 75%, rgb(${backgroundColor}, 0.5)`}}>
+            <div className="artistpage" style={{backgroundImage: `linear-gradient(0deg, rgb(30, 30, 30), 75%, rgb(${backgroundColor}, 0.5)`}}>
+                <div className="artistbox">
                     <div className="artistinfo">
                         <div className="popularity">
                             <span className="currentpopularity">{artist.popularity}<i className="fa-solid fa-fire-flame-curved"></i></span>
@@ -225,17 +249,20 @@ export function Artist(props) {
                         <div className="collection">
                             <p className="title">Top Tracks</p>
                             <div className="toptracks">
-                                {tracks.slice(0, 4).map((track, index) => (
+                                {tracks.slice(0, 5).map((track, index) => (
                                     <div className="track" key={index} onClick={() => clickTrack(index)}>
-                                        <img className="image" src={track.album.images[0].url} alt={track.name}/>
-                                        <p>{track.name}</p>
+                                        <div className="info">
+                                            <img className="image" src={track.album.images[0].url} alt={track.name}/>
+                                            <p className="name">{track.name}</p>
+                                            <p className="album name">{track.album.name}</p>
+                                        </div>
+                                        <span className="popularity">{track.popularity}<i className="fa-solid fa-fire-flame-curved"></i></span>
                                         <i className="fa-brands fa-spotify link"></i>
                                     </div>
                                 ))}
-                                {/* <div className="track invisible"></div> */}
                             </div>
                         </div>
-                        <div className="collection">
+                        {/* <div className="collection">
                             <p className="title">Albums</p>
                             <div className="albums">
                                 {albums.slice(0, 4).map((album, index) => (
@@ -245,19 +272,17 @@ export function Artist(props) {
                                         <i className="fa-brands fa-spotify link"></i>
                                     </div>
                                 ))}
-                                {/* <div className="album invisible"></div> */}
                             </div>
-                        </div>
+                        </div> */}
                         <div className="collection">
                             <p className="title">Related Artists</p>
                             <div className="relatedartists">
-                                {relatedartists.slice(0, 4).map((relatedartist, index) => (
+                                {relatedartists.slice(0, 8).map((relatedartist, index) => (
                                     <div className="relatedartist" key={index} onClick={() => clickRelatedArtist(index)}>
                                         {relatedartist.images.length ? <img className="image" src={relatedartist.images[0].url} alt={relatedartist.name}/> : <i className="fa-solid fa-user image"></i>}
                                         <p>{relatedartist.name}</p>
                                     </div>
                                 ))}
-                                {/* <div className="relatedartist invisible"></div> */}
                             </div>
                         </div>
                     </div>

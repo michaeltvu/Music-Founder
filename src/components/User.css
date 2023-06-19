@@ -1,6 +1,6 @@
 .userpage {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     height: 100vh;
     width: calc(100vw - 275px);
@@ -8,16 +8,18 @@
     /* border: 1px dotted red; */
     /* padding: 20px; */
     /* margin-bottom: 20px; */
+    overflow-y: auto;
+    overflow-x: hidden;
     margin-bottom: 20px;
 }
 
-.userpage .usermusic .artists::-webkit-scrollbar {
-    width: 5px;
+.userpage::-webkit-scrollbar {
+    width: 15px;
 }
 
-.userpage .usermusic .artists::-webkit-scrollbar-thumb {
+.userpage::-webkit-scrollbar-thumb {
     background: rgba(128, 128, 128, 0.5);
-    border-radius: 2.5px;
+    border-radius: 5px;
 }
 
 .userpage .userbox {
@@ -67,19 +69,11 @@
 
 .userpage .userinfo .name {
     position: relative;
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-    align-items: flex-start;
     font-size: 48px;
-    padding: 0px 40px 0px 0px;
-}
-
-.userpage .userinfo .name p {
     text-align: start;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* max-width: 210px; */
 }
 
 .userpage .userinfo .friends {
@@ -108,7 +102,6 @@
 }
 
 .userpage .userinfo .score .fa-fire-flame-curved {
-    font-size: 32px;
     color: rgb(255, 186, 125);
 }
 
@@ -123,7 +116,8 @@
     gap: 10px;
 }
 
-.userpage .userbox .userinfo .add {
+.userpage .userbox .userinfo .add,
+.userpage .userbox .userinfo .edit {
     font-size: 14px;
     display: flex;
     gap: 5px;
@@ -152,7 +146,8 @@
 }
 
 .userpage .userinfo .add:hover,
-.userpage .userinfo .remove:hover {
+.userpage .userinfo .remove:hover,
+.userpage .userinfo .edit:hover {
     transform: translateY(-20%);
     cursor: pointer;
 }
@@ -261,8 +256,8 @@
     justify-content: space-between;
     gap: 15px;
     flex-wrap: wrap;
-    max-height: 400px;
-    min-height: 400px;
+    /* max-height: 400px;
+    min-height: 400px; */
     overflow-y: auto;
     padding-top: 10px;
     padding-right: 10px;
@@ -275,7 +270,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 5px;
+    /* gap: 5px; */
     font-size: 14px;
     /* height: 190px; */
     /* width: 175px; */
@@ -328,20 +323,39 @@
 .userpage .usermusic .artists .artist .popularity {
     display: flex;
     gap: 3px;
-    position: absolute;
-    top: 15px;
-    right: 10px;
+    /* position: absolute; */
+    /* top: 15px;
+    right: 10px; */
     font-size: 14px;
+    margin-top: 5px;
 }
 
 .userpage .usermusic .artists .artist .popularity .fa-fire-flame-curved {
     color: rgb(255, 186, 125);
 }
 
+.userpage .usermusic .artists .artist .score {
+    display: flex;
+    gap: 3px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    font-size: 14px;
+}
+
+.userpage .usermusic .artists .artist .score .fa-fire-flame-curved {
+    color: rgb(255, 186, 125);
+}
+
+.userpage .usermusic .artists .artist .score .fa-snowflake {
+    color: rgb(123, 200, 228);
+}
+
 .userpage .usermusic .artists .artist .added {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-left: auto;
 }
 
 .userpage .usermusic .artists .artist .added .addedpopularity {
@@ -369,9 +383,1115 @@
     inherits: false;
 }
 
+@media (min-width: 0px) {
+    .userpage {
+        width: 100vw;
+    }
+
+    .userpage .userbox {
+        width: calc(100vw - 40px);
+        border-radius: 0.5vw;
+    }
+
+    .userpage .userbox .userinfo {
+        padding: 10vw 2vw 1vw 2vw;
+        width: calc(100vw - 40px);
+        gap: 3vw;
+    }
+
+    .userpage .userinfo .image {
+        height: 25vw;
+        width: 25vw;
+        font-size: 5vw;
+    }
+
+    .userpage .userinfo .sub {
+        gap: 0px;
+    }
+
+    .userpage .userinfo .name {
+        font-size: 24px;
+        width: 47.5vw;
+    }
+    
+    .userpage .userinfo .friends {
+        font-size: 10px;
+    }
+    
+    .userpage .userinfo .score {
+        right: 2vw;
+        gap: 0.5vw;
+        font-size: 20px;
+    }
+    
+    .userpage .userinfo .score i {
+        font-size: 16px;
+    }
+    
+    .userpage .userbox .userinfo .add,
+    .userpage .userbox .userinfo .edit {
+        margin-top: 0.5vw;
+        font-size: 10px;
+        gap: 0.5vw;
+        padding: 5px 7.5px;
+        border-radius: 0.25vw;
+    }
+    
+    .userpage .userbox .userinfo .remove {
+        margin-top: 0.5vw;
+        font-size: 10px;
+        gap: 0.5vw;
+        padding: 5px 7.5px;
+        border-radius: 0.25vw;
+    }
+
+    .userpage .usermusic {
+        padding: 5vw 2vw 2vw 2vw;
+    }
+    
+    .userpage .usermusic .collection .title {
+        font-size: 18px;
+    }
+
+    .userpage .usermusic .collection .sort {
+        font-size: 14px;
+    }
+    
+    .userpage .usermusic .collection .sort-menu.open {
+        width: 150px;
+        border-radius: 2.5px;
+        right: -0.5vw;
+        bottom: unset;
+        top: 7.5vw;
+        font-size: 12px;
+        padding: 12px;
+        background-color: rgb(48, 48, 48);
+    }
+    
+    .userpage .usermusic .collection .sort-menu hr {
+        border: 0.1vw solid rgb(199, 199, 199);
+        margin-bottom: 0.5vw;
+    }
+    
+    .userpage .usermusic .collection .sort-menu p {
+        padding: 0 7.5px;
+        margin: 7.5px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by {
+        border-radius: 2.5px;
+        margin: 10px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by.selected {
+        padding: 10px 7.5px;
+    }
+    
+    .userpage .usermusic .artists {
+        gap: 4vw;
+        width: calc(100vw - 40px - 2vw);
+        /* max-height: 27.65vw; */
+        padding-top: 0.5vw;
+        padding-right: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist {
+        /* gap: 0.5vw; */
+        font-size: 0.75vw;
+        width: 39vw;
+        padding: 5%;
+        border-radius: 1vw;
+    }
+    
+    .userpage .usermusic .artists .artist .image {
+        width: 100%;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        font-size: 2vw;
+    }
+    
+    .userpage .usermusic .artists .artist p {
+        max-width: 100%;
+    }
+
+    .userpage .usermusic .artists .artist .name {
+        max-width: 100%;
+        font-size: 12px;
+        margin-top: 0.5vw;
+    }
+
+    .userpage .usermusic .artists .artist .popularity {
+        gap: 0.25vw;
+        font-size: 12px;
+    }
+
+    .userpage .usermusic .artists .artist .score {
+        gap: 0.25vw;
+        top: 3vw;
+        right: 2vw;
+        font-size: 12px;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addedpopularity {
+        font-size: 10px;
+        gap: 0.25vw;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addeddate {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 400px) {
+    .userpage {
+        width: 100vw;
+    }
+
+    .userpage .userbox {
+        width: calc(100vw - 40px);
+        border-radius: 0.5vw;
+    }
+
+    .userpage .userbox .userinfo {
+        padding: 6vw 2vw 1vw 2vw;
+        width: calc(100vw - 40px);
+        gap: 2vw;
+    }
+
+    .userpage .userinfo .image {
+        height: 20vw;
+        width: 20vw;
+        font-size: 5vw;
+    }
+
+    .userpage .userinfo .sub {
+        gap: 0px;
+    }
+
+    .userpage .userinfo .name {
+        font-size: 32px;
+        width: 55vw;
+    }
+    
+    .userpage .userinfo .friends {
+        font-size: 12px;
+    }
+    
+    .userpage .userinfo .score {
+        right: 2vw;
+        gap: 0.5vw;
+        font-size: 30px;
+    }
+    
+    .userpage .userinfo .score i {
+        font-size: 24px;
+    }
+    
+    .userpage .userbox .userinfo .add,
+    .userpage .userbox .userinfo .edit {
+        margin-top: 0.5vw;
+        font-size: 10px;
+        gap: 0.5vw;
+        padding: 7.5px 10px;
+        border-radius: 0.25vw;
+    }
+    
+    .userpage .userbox .userinfo .remove {
+        margin-top: 0.5vw;
+        font-size: 10px;
+        gap: 0.5vw;
+        padding: 7.5px 10px;
+        border-radius: 0.25vw;
+    }
+
+    .userpage .usermusic {
+        padding: 3vw 2vw 2vw 2vw;
+    }
+    
+    .userpage .usermusic .collection .title {
+        font-size: 20px;
+    }
+
+    .userpage .usermusic .collection .sort {
+        font-size: 14px;
+    }
+    
+    .userpage .usermusic .collection .sort-menu.open {
+        width: 150px;
+        border-radius: 2.5px;
+        right: -0.5vw;
+        bottom: unset;
+        top: 5vw;
+        font-size: 12px;
+        padding: 12px;
+        background-color: rgb(48, 48, 48);
+    }
+    
+    .userpage .usermusic .collection .sort-menu hr {
+        border: 0.1vw solid rgb(199, 199, 199);
+        margin-bottom: 0.5vw;
+    }
+    
+    .userpage .usermusic .collection .sort-menu p {
+        padding: 0 7.5px;
+        margin: 7.5px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by {
+        border-radius: 2.5px;
+        margin: 10px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by.selected {
+        padding: 10px 7.5px;
+    }
+    
+    .userpage .usermusic .artists {
+        gap: 2vw;
+        width: calc(100vw - 10vw);
+        /* max-height: 27.65vw; */
+        padding-top: 0.5vw;
+        padding-right: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist {
+        /* gap: 0.5vw; */
+        font-size: 0.75vw;
+        width: 27.5vw;
+        padding: 3.5%;
+        border-radius: 1vw;
+    }
+    
+    .userpage .usermusic .artists .artist .image {
+        width: 100%;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        font-size: 2vw;
+    }
+    
+    .userpage .usermusic .artists .artist p {
+        max-width: 100%;
+    }
+
+    .userpage .usermusic .artists .artist .name {
+        max-width: 100%;
+        font-size: 12px;
+        margin-top: 0.5vw;
+    }
+
+    .userpage .usermusic .artists .artist .popularity {
+        gap: 0.25vw;
+        font-size: 12px;
+    }
+
+    .userpage .usermusic .artists .artist .score {
+        gap: 0.25vw;
+        top: 2vw;
+        right: 1.5vw;
+        font-size: 12px;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addedpopularity {
+        font-size: 10px;
+        gap: 0.25vw;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addeddate {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 600px) {
+    .userpage {
+        width: 100vw;
+    }
+
+    .userpage .userbox {
+        width: calc(100vw - 50px);
+        border-radius: 0.5vw;
+    }
+
+    .userpage .userbox .userinfo {
+        padding: 6vw 2vw 1vw 2vw;
+        width: calc(100vw - 50px);
+        gap: 2vw;
+    }
+
+    .userpage .userinfo .image {
+        height: 18vw;
+        width: 18vw;
+        font-size: 5vw;
+    }
+
+    .userpage .userinfo .name {
+        font-size: 42px;
+        width: 60vw;
+    }
+    
+    .userpage .userinfo .friends {
+        font-size: 14px;
+    }
+    
+    .userpage .userinfo .score {
+        right: 2vw;
+        gap: 0.5vw;
+        font-size: 36px;
+    }
+    
+    .userpage .userinfo .score i {
+        font-size: 28px;
+    }
+    
+    .userpage .userbox .userinfo .add,
+    .userpage .userbox .userinfo .edit {
+        margin-top: 0.5vw;
+        font-size: 12px;
+        gap: 0.5vw;
+        padding: 10px 10px;
+        border-radius: 0.25vw;
+    }
+    
+    .userpage .userbox .userinfo .remove {
+        margin-top: 0.5vw;
+        font-size: 12px;
+        gap: 0.5vw;
+        padding: 10px 10px;
+        border-radius: 0.25vw;
+    }
+
+    .userpage .usermusic {
+        padding: 1vw 2vw 2vw 2vw;
+    }
+    
+    .userpage .usermusic .collection .title {
+        font-size: 24px;
+    }
+
+    .userpage .usermusic .collection .sort {
+        font-size: 14px;
+    }
+    
+    .userpage .usermusic .collection .sort-menu.open {
+        width: 150px;
+        border-radius: 2.5px;
+        right: -0.5vw;
+        bottom: unset;
+        top: 5vw;
+        font-size: 12px;
+        padding: 12px;
+        background-color: rgb(48, 48, 48);
+    }
+    
+    .userpage .usermusic .collection .sort-menu hr {
+        border: 0.1vw solid rgb(199, 199, 199);
+        margin-bottom: 0.5vw;
+    }
+    
+    .userpage .usermusic .collection .sort-menu p {
+        padding: 0 7.5px;
+        margin: 7.5px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by {
+        border-radius: 2.5px;
+        margin: 10px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by.selected {
+        padding: 10px 7.5px;
+    }
+    
+    .userpage .usermusic .artists {
+        gap: 2vw;
+        width: calc(100vw - 10vw);
+        /* max-height: 27.65vw; */
+        padding-top: 0.5vw;
+        padding-right: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist {
+        /* gap: 0.5vw; */
+        font-size: 0.75vw;
+        width: 20vw;
+        padding: 3%;
+        border-radius: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist .image {
+        width: 100%;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        font-size: 2vw;
+    }
+    
+    .userpage .usermusic .artists .artist p {
+        max-width: 100%;
+    }
+
+    .userpage .usermusic .artists .artist .name {
+        max-width: 100%;
+        font-size: 12px;
+        margin-top: 0.5vw;
+    }
+
+    .userpage .usermusic .artists .artist .popularity {
+        gap: 0.25vw;
+        font-size: 12px;
+    }
+
+    .userpage .usermusic .artists .artist .score {
+        gap: 0.25vw;
+        top: 1.5vw;
+        right: 1vw;
+        font-size: 12px;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addedpopularity {
+        font-size: 10px;
+        gap: 0.25vw;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addeddate {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 800px) {
+    .userpage {
+        width: calc(100vw - 275px);
+    }
+
+    .userpage .userbox {
+        width: calc(100vw - 275px - 50px);
+        border-radius: 0.5vw;
+    }
+
+    .userpage .userbox .userinfo {
+        padding: 4vw 2vw 1vw 2vw;
+        width: calc(100vw - 275px - 50px);
+        gap: 2vw;
+    }
+
+    .userpage .userinfo .image {
+        height: 17vw;
+        width: 17vw;
+        font-size: 5vw;
+    }
+
+    .userpage .userinfo .name {
+        font-size: 30px;
+        width: 35vw;
+    }
+    
+    .userpage .userinfo .friends {
+        font-size: 14px;
+    }
+    
+    .userpage .userinfo .score {
+        right: 2vw;
+        gap: 0.5vw;
+        font-size: 36px;
+    }
+    
+    .userpage .userinfo .score i {
+        font-size: 28px;
+    }
+    
+    .userpage .userbox .userinfo .add,
+    .userpage .userbox .userinfo .edit {
+        margin-top: 0.5vw;
+        font-size: 12px;
+        gap: 0.5vw;
+        padding: 7.5px 10px;
+        border-radius: 0.25vw;
+    }
+    
+    .userpage .userbox .userinfo .remove {
+        margin-top: 0.5vw;
+        font-size: 12px;
+        gap: 0.5vw;
+        padding: 7.5px 10px;
+        border-radius: 0.25vw;
+    }
+
+    .userpage .usermusic {
+        padding: 1vw 2vw 2vw 2vw;
+    }
+    
+    .userpage .usermusic .collection .title {
+        font-size: 24px;
+    }
+
+    .userpage .usermusic .collection .sort {
+        font-size: 14px;
+    }
+    
+    .userpage .usermusic .collection .sort-menu.open {
+        width: 150px;
+        border-radius: 2.5px;
+        right: -0.5vw;
+        bottom: 2.5vw;
+        top: unset;
+        font-size: 12px;
+        padding: 12px;
+    }
+    
+    .userpage .usermusic .collection .sort-menu hr {
+        border: 0.1vw solid rgb(199, 199, 199);
+        margin-bottom: 0.5vw;
+    }
+    
+    .userpage .usermusic .collection .sort-menu p {
+        padding: 0 7.5px;
+        margin: 7.5px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by {
+        border-radius: 2.5px;
+        margin: 10px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by.selected {
+        padding: 10px 7.5px;
+    }
+    
+    .userpage .usermusic .artists {
+        gap: 1.5vw;
+        width: calc(100vw - 275px - 7vw);
+        /* max-height: 27.65vw; */
+        padding-top: 0.5vw;
+        padding-right: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist {
+        /* gap: 0.5vw; */
+        font-size: 0.75vw;
+        width: 18vw;
+        padding: 4%;
+        border-radius: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist .image {
+        width: 100%;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        font-size: 2vw;
+    }
+    
+    .userpage .usermusic .artists .artist p {
+        max-width: 100%;
+    }
+
+    .userpage .usermusic .artists .artist .name {
+        max-width: 100%;
+        font-size: 14px;
+        margin-top: 0.5vw;
+    }
+
+    .userpage .usermusic .artists .artist .popularity {
+        gap: 0.25vw;
+        font-size: 14px;
+    }
+
+    .userpage .usermusic .artists .artist .score {
+        gap: 0.25vw;
+        top: 1vw;
+        right: 0.75vw;
+        font-size: 14px;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addedpopularity {
+        font-size: 12px;
+        gap: 0.25vw;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addeddate {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .userpage {
+        width: calc(100vw - 275px);
+    }
+
+    .userpage .userbox {
+        width: calc(100vw - 275px - 50px);
+        border-radius: 0.5vw;
+    }
+
+    .userpage .userbox .userinfo {
+        padding: 4vw 2vw 1vw 2vw;
+        width: calc(100vw - 275px - 50px);
+        gap: 2vw;
+    }
+
+    .userpage .userinfo .image {
+        height: 15vw;
+        width: 15vw;
+        font-size: 5vw;
+    }
+
+    .userpage .userinfo .name {
+        font-size: 42px;
+        width: 42.5vw;
+    }
+    
+    .userpage .userinfo .friends {
+        font-size: 14px;
+    }
+    
+    .userpage .userinfo .score {
+        right: 2vw;
+        gap: 0.5vw;
+        font-size: 36px;
+    }
+    
+    .userpage .userinfo .score i {
+        font-size: 28px;
+    }
+    
+    .userpage .userbox .userinfo .add,
+    .userpage .userbox .userinfo .edit {
+        margin-top: 0.5vw;
+        font-size: 14px;
+        gap: 0.5vw;
+        padding: 10px 20px;
+        border-radius: 0.25vw;
+    }
+    
+    .userpage .userbox .userinfo .remove {
+        margin-top: 0.5vw;
+        font-size: 14px;
+        gap: 0.5vw;
+        padding: 10px 20px;
+        border-radius: 0.25vw;
+    }
+
+    .userpage .usermusic {
+        padding: 1vw 2vw 2vw 2vw;
+    }
+    
+    .userpage .usermusic .collection .title {
+        font-size: 24px;
+    }
+
+    .userpage .usermusic .collection .sort {
+        font-size: 14px;
+    }
+    
+    .userpage .usermusic .collection .sort-menu.open {
+        width: 150px;
+        border-radius: 2.5px;
+        right: -0.5vw;
+        bottom: 2.5vw;
+        font-size: 12px;
+        padding: 12px;
+    }
+    
+    .userpage .usermusic .collection .sort-menu hr {
+        border: 0.1vw solid rgb(199, 199, 199);
+        margin-bottom: 0.5vw;
+    }
+    
+    .userpage .usermusic .collection .sort-menu p {
+        padding: 0 7.5px;
+        margin: 7.5px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by {
+        border-radius: 2.5px;
+        margin: 10px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by.selected {
+        padding: 10px 7.5px;
+    }
+    
+    .userpage .usermusic .artists {
+        gap: 1.5vw;
+        width: calc(100vw - 275px - 7vw);
+        /* max-height: 27.65vw; */
+        padding-top: 0.5vw;
+        padding-right: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist {
+        /* gap: 0.5vw; */
+        font-size: 0.75vw;
+        width: 15vw;
+        padding: 3%;
+        border-radius: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist .image {
+        width: 100%;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        font-size: 2vw;
+    }
+    
+    .userpage .usermusic .artists .artist p {
+        max-width: 100%;
+    }
+
+    .userpage .usermusic .artists .artist .name {
+        max-width: 100%;
+        font-size: 14px;
+        margin-top: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist .popularity {
+        gap: 0.25vw;
+        font-size: 14px;
+    }
+
+    .userpage .usermusic .artists .artist .score {
+        gap: 0.25vw;
+        top: 1vw;
+        right: 0.75vw;
+        font-size: 14px;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addedpopularity {
+        font-size: 12px;
+        gap: 0.25vw;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addeddate {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .userpage {
+        width: calc(100vw - 275px);
+    }
+
+    .userpage .userbox {
+        width: calc(100vw - 275px - 50px);
+        border-radius: 0.5vw;
+    }
+
+    .userpage .userbox .userinfo {
+        padding: 4vw 2vw 1vw 2vw;
+        width: calc(100vw - 275px - 50px);
+        gap: 2vw;
+    }
+
+    .userpage .userinfo .image {
+        height: 15vw;
+        width: 15vw;
+        font-size: 5vw;
+    }
+
+    .userpage .userinfo .name {
+        font-size: 48px;
+        width: 48vw;
+    }
+    
+    .userpage .userinfo .friends {
+        font-size: 16px;
+    }
+    
+    .userpage .userinfo .score {
+        right: 2vw;
+        gap: 0.25vw;
+        font-size: 48px;
+    }
+    
+    .userpage .userinfo .score i {
+        font-size: 36px;
+    }
+    
+    .userpage .userbox .userinfo .add,
+    .userpage .userbox .userinfo .edit {
+        margin-top: 0.5vw;
+        font-size: 14px;
+        gap: 0.5vw;
+        padding: 10px 25px;
+        border-radius: 0.25vw;
+    }
+    
+    .userpage .userbox .userinfo .remove {
+        margin-top: 0.5vw;
+        font-size: 14px;
+        gap: 0.5vw;
+        padding: 10px 25px;
+        border-radius: 0.25vw;
+    }
+
+    .userpage .usermusic {
+        padding: 1vw 2vw 2vw 2vw;
+    }
+    
+    .userpage .usermusic .collection .title {
+        font-size: 26px;
+    }
+
+    .userpage .usermusic .collection .sort {
+        font-size: 14px;
+    }
+    
+    .userpage .usermusic .collection .sort-menu.open {
+        width: 175px;
+        border-radius: 2.5px;
+        right: -0.5vw;
+        bottom: 2vw;
+        font-size: 14px;
+        padding: 15px;
+    }
+    
+    .userpage .usermusic .collection .sort-menu hr {
+        border: 0.1vw solid rgb(199, 199, 199);
+        margin-bottom: 0.5vw;
+    }
+    
+    .userpage .usermusic .collection .sort-menu p {
+        padding: 0 7.5px;
+        margin: 7.5px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by {
+        border-radius: 2.5px;
+        margin: 10px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by.selected {
+        padding: 10px 7.5px;
+    }
+    
+    .userpage .usermusic .artists {
+        gap: 1vw;
+        width: calc(100vw - 275px - 7vw);
+        /* max-height: 27.65vw; */
+        padding-top: 0.5vw;
+        padding-right: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist {
+        /* gap: 0.5vw; */
+        font-size: 0.75vw;
+        width: 13vw;
+        padding: 2.5%;
+        border-radius: 0.35vw;
+    }
+    
+    .userpage .usermusic .artists .artist .image {
+        width: 100%;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        font-size: 2vw;
+    }
+    
+    .userpage .usermusic .artists .artist p {
+        max-width: 100%;
+    }
+
+    .userpage .usermusic .artists .artist .name {
+        max-width: 100%;
+        font-size: 14px;
+        margin-top: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist .popularity {
+        gap: 0.25vw;
+        font-size: 14px;
+    }
+
+    .userpage .usermusic .artists .artist .score {
+        gap: 0.25vw;
+        top: 0.75vw;
+        right: 0.5vw;
+        font-size: 14px;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addedpopularity {
+        font-size: 12px;
+        gap: 0.25vw;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addeddate {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 1500px) {
+    .userpage {
+        width: calc(100vw - 275px);
+    }
+
+    .userpage .userbox {
+        width: calc(100vw - 275px - 50px);
+        border-radius: 0.5vw;
+    }
+
+    .userpage .userbox .userinfo {
+        padding: 4vw 2vw 1vw 2vw;
+        width: calc(100vw - 275px - 50px);
+        gap: 2vw;
+    }
+
+    .userpage .userinfo .image {
+        height: 12vw;
+        width: 12vw;
+        font-size: 5vw;
+    }
+
+    .userpage .userinfo .name {
+        font-size: 48px;
+        width: 55vw;
+    }
+    
+    .userpage .userinfo .friends {
+        font-size: 16px;
+    }
+    
+    .userpage .userinfo .score {
+        right: 2vw;
+        gap: 0.25vw;
+    }
+    
+    .userpage .userinfo .score {
+        gap: 0.25vw;
+        font-size: 48px;
+    }
+    
+    .userpage .userinfo .score i {
+        font-size: 36px;
+    }
+    
+    .userpage .userbox .userinfo .add,
+    .userpage .userbox .userinfo .edit {
+        margin-top: 0.5vw;
+        font-size: 14px;
+        gap: 0.5vw;
+        padding: 10px 25px;
+        border-radius: 0.25vw;
+    }
+    
+    .userpage .userbox .userinfo .remove {
+        margin-top: 0.5vw;
+        font-size: 14px;
+        gap: 0.5vw;
+        padding: 10px 25px;
+        border-radius: 0.25vw;
+    }
+
+    .userpage .usermusic {
+        padding: 1vw 2vw 2vw 2vw;
+    }
+    
+    .userpage .usermusic .collection .title {
+        font-size: 26px;
+    }
+
+    .userpage .usermusic .collection .sort {
+        font-size: 14px;
+    }
+    
+    .userpage .usermusic .collection .sort-menu.open {
+        width: 175px;
+        border-radius: 2.5px;
+        right: -0.5vw;
+        bottom: 1.5vw;
+        font-size: 14px;
+        padding: 15px;
+    }
+    
+    .userpage .usermusic .collection .sort-menu hr {
+        border: 0.1vw solid rgb(199, 199, 199);
+        margin-bottom: 0.5vw;
+    }
+    
+    .userpage .usermusic .collection .sort-menu p {
+        padding: 0 7.5px;
+        margin: 7.5px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by {
+        border-radius: 2.5px;
+        margin: 10px 0;
+    }
+    
+    .userpage .usermusic .collection .sort-menu .sort-by.selected {
+        padding: 10px 7.5px;
+    }
+    
+    .userpage .usermusic .artists {
+        gap: 0.75vw;
+        width: calc(100vw - 275px - 7vw);
+        /* max-height: 27.65vw; */
+        padding-top: 0.5vw;
+        padding-right: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist {
+        /* gap: 0.5vw; */
+        font-size: 0.75vw;
+        width: 11vw;
+        padding: 1.5%;
+        border-radius: 0.25vw;
+    }
+    
+    .userpage .usermusic .artists .artist .image {
+        width: 100%;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        font-size: 2vw;
+    }
+    
+    .userpage .usermusic .artists .artist p {
+        max-width: 100%;
+    }
+
+    .userpage .usermusic .artists .artist .name {
+        max-width: 100%;
+        font-size: 14px;
+        margin-top: 0.5vw;
+    }
+    
+    .userpage .usermusic .artists .artist .popularity {
+        gap: 0.25vw;
+        font-size: 14px;
+    }
+
+    .userpage .usermusic .artists .artist .score {
+        gap: 0.25vw;
+        top: 0.75vw;
+        right: 0.5vw;
+        font-size: 14px;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addedpopularity {
+        font-size: 12px;
+        gap: 0.25vw;
+    }
+    
+    .userpage .usermusic .artists .artist .added .addeddate {
+        font-size: 12px;
+    }
+}
+
 @media (min-width: 1920px) {
     .userpage {
         width: calc(100vw - 15vw);
+    }
+
+    .userpage::-webkit-scrollbar {
+        width: 1vw;
+    }
+    
+    .userpage::-webkit-scrollbar-thumb {
+        background: rgba(128, 128, 128, 0.5);
+        border-radius: 0.25vw;
     }
 
     .userpage .userbox {
@@ -380,8 +1500,9 @@
     }
 
     .userpage .userbox .userinfo {
-        padding: 2vw 2vw 1vw 2vw;
+        padding: 4vw 2vw 1vw 2vw;
         width: calc(100vw - 22.5vw);
+        gap: 2vw;
     }
 
     .userpage .userinfo .image {
@@ -392,6 +1513,7 @@
 
     .userpage .userinfo .name {
         font-size: 3vw;
+        width: 57vw;
     }
     
     .userpage .userinfo .friends {
@@ -412,7 +1534,8 @@
         font-size: 2vw;
     }
     
-    .userpage .userbox .userinfo .add {
+    .userpage .userbox .userinfo .add,
+    .userpage .userbox .userinfo .edit {
         margin-top: 0.5vw;
         font-size: 0.75vw;
         gap: 0.5vw;
@@ -441,12 +1564,12 @@
     }
     
     .userpage .usermusic .collection .sort-menu.open {
-        width: 7.5vw;
+        width: 8.5vw;
         border-radius: 0.25vw;
         right: -0.5vw;
         bottom: 1.5vw;
         font-size: 0.7vw;
-        padding: 0.5vw;
+        padding: 0.75vw;
     }
     
     .userpage .usermusic .collection .sort-menu hr {
@@ -455,8 +1578,8 @@
     }
     
     .userpage .usermusic .collection .sort-menu p {
-        padding: 0 0.25vw;
-        margin: 0.4vw 0;
+        padding: 0 0.5vw;
+        margin: 0.5vw 0;
     }
     
     .userpage .usermusic .collection .sort-menu .sort-by {
@@ -471,13 +1594,13 @@
     .userpage .usermusic .artists {
         gap: 0.75vw;
         width: calc(100vw - 26vw);
-        max-height: 27.65vw;
+        /* max-height: 27.65vw; */
         padding-top: 0.5vw;
         padding-right: 0.5vw;
     }
     
     .userpage .usermusic .artists .artist {
-        gap: 0.5vw;
+        gap: 0.1vw;
         font-size: 0.75vw;
         width: 9.5vw;
         padding: 1.5%;
@@ -503,13 +1626,18 @@
     .userpage .usermusic .artists .artist .name {
         max-width: 100%;
         font-size: 0.75vw;
-        margin-top: 0.1vw;
+        margin-top: 0.5vw;
     }
-    
+
     .userpage .usermusic .artists .artist .popularity {
         gap: 0.25vw;
+        font-size: 0.75vw;
+    }
+
+    .userpage .usermusic .artists .artist .score {
+        gap: 0.25vw;
         top: 0.75vw;
-        right: 0.5vw;
+        right: 0.75vw;
         font-size: 0.75vw;
     }
     

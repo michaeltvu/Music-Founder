@@ -1,7 +1,8 @@
 .artistpage {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
+    align-items: flex-start;
     height: 100vh;
     width: calc(100vw - 275px);
     /* overflow-y: auto; */
@@ -9,12 +10,13 @@
     /* padding: 20px; */
     /* margin-bottom: 20px; */
     /* margin-bottom: 20px; */
+    overflow: auto;
 }
 
-.artistbox::-webkit-scrollbar {
+.artistpage::-webkit-scrollbar {
     width: 15px;
 }
-.artistbox::-webkit-scrollbar-thumb {
+.artistpage::-webkit-scrollbar-thumb {
     background: rgba(128, 128, 128, 0.5);
     border-radius: 5px;
 }
@@ -24,12 +26,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: auto;
+    overflow: hidden;
     border-radius: 30px;
     /* border: 5px solid rgb(70, 70, 70); */
     filter: blur(0px);
     overflow-x: hidden;
-    box-shadow: rgba(255, 255, 255, 0.05) 0 0px 100px 0px;
+    /* box-shadow: rgba(255, 255, 255, 0.05) 0 0px 100px 0px; */
 }
 
 .artistpage.confirmation .artistbox {
@@ -72,6 +74,7 @@
 }
 
 .artistpage .artistinfo .name {
+    text-align: start;
     font-size: 48px;
 }
 
@@ -111,7 +114,8 @@
 
 .artistpage .artistinfo .popularity .added .addedpopularity {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     gap: 2.5px;
     font-size: 12px;
 }
@@ -175,9 +179,10 @@
 
 .artistpage .artistmusic {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 60px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
     padding: 20px;
     /* border: 5px solid rgb(45, 45, 45); */
     /* background-color: black; */
@@ -201,43 +206,102 @@
     border-radius: 5px;
 }
 
-.artistpage .artistmusic .toptracks,
-.artistpage .artistmusic .albums,
+.artistpage .artistmusic .toptracks {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* margin-bottom: 10px; */
+    flex-wrap: nowrap;
+    /* width: 365px;
+    height: 400px; */
+}
+
 .artistpage .artistmusic .relatedartists {
     display: flex;
     gap: 15px;
-    /* margin-bottom: 10px; */
-    flex-wrap: wrap;
-    width: 365px;
-    height: 400px;
+    flex-wrap: nowrap;
+    /* flex-wrap: wrap; */
+    overflow-x: hidden;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px dotted red; */
 }
 
-.artistpage .artistmusic .toptracks .track,
-.artistpage .artistmusic .albums .album,
+.artistpage .artistmusic .toptracks .track {
+    position: relative;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 14px;
+    /* height: 190px; */
+    /* width: 175px; */
+    padding: 20px;
+    border-radius: 20px;
+    /* background-image: linear-gradient(180deg, var(--artistcolor1),var(--artistcolor2)); */
+    background-color: rgba(255, 255, 255, 0);
+    transition: transform 0.25s, --artistcolor1 0.25s, --artistcolor2 0.25s, background-color 0.1s;
+    /* box-shadow: rgba(255, 255, 255, 0.025) 0 0px 20px 0px; */
+    /* border: 1px dotted red; */
+}
+
 .artistpage .artistmusic .relatedartists .relatedartist {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: space-between; */
     gap: 10px;
     font-size: 14px;
-    height: 190px;
-    width: 175px;
-    /* padding: 20px; */
+    /* height: 190px; */
+    /* width: 175px; */
+    padding: 20px;
     border-radius: 20px;
-    background-image: linear-gradient(180deg, var(--artistcolor1),var(--artistcolor2));
-    transition: transform 0.25s, --artistcolor1 0.25s, --artistcolor2 0.25s;
-    box-shadow: rgba(255, 255, 255, 0.025) 0 0px 20px 0px;
+    /* background-image: linear-gradient(180deg, var(--artistcolor1),var(--artistcolor2)); */
+    background-color: rgba(255, 255, 255, 0);
+    transition: transform 0.25s, --artistcolor1 0.25s, --artistcolor2 0.25s, background-color 0.1s;
+    /* box-shadow: rgba(255, 255, 255, 0.025) 0 0px 20px 0px; */
+    /* border: 1px dotted red; */
+}
+
+.artistpage .artistmusic .relatedartists .relatedartist.invisible {
+    /* height: 0px; */
+    opacity: 0;
 }
 
 .artistpage .artistmusic .toptracks .track:hover,
 .artistpage .artistmusic .albums .album:hover,
 .artistpage .artistmusic .relatedartists .relatedartist:hover {
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
     --artistcolor1: rgb(45, 45, 45);
     --artistcolor2: rgb(25, 25, 25);
     transform: translateY(-2.5%);
+}
+
+.artistpage .artistmusic .toptracks .track .info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.artistpage .artistmusic .toptracks .track .name {
+    text-align: start;
+    width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.artistpage .artistmusic .toptracks .track .album.name {
+    opacity: 0.5;
+}
+
+.artistpage .artistmusic .toptracks .track .popularity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .artistpage .artistmusic .toptracks .track .image,
@@ -254,20 +318,28 @@
     background-color: rgb(70, 70, 70);
 }
 
+.artistpage .artistmusic .relatedartists .relatedartist p {
+    text-align: center;
+    width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .artistpage .artistmusic .toptracks .track .link,
 .artistpage .artistmusic .albums .album .link {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0.5;
-    position: absolute;
-    top: 15px;
-    right: 15px;
+    position: absolute; */
+    /* top: 15px; */
+    /* right: 15px; */
     font-size: 24px;
     transition: opacity 0.25s;
-    border-radius: 50%;
+    opacity: 0.5;
     color: rgb(30 215 96);
-    background-color: black;
+    /* background-color: black; */
 }
 
 .artistpage .artistmusic .toptracks .track:hover .link,
@@ -283,7 +355,7 @@
     border-radius: 50%;
 }
 
-.artistpage .artistmusic .toptracks .track p,
+/* .artistpage .artistmusic .toptracks .track p,
 .artistpage .artistmusic .albums .album p,
 .artistpage .artistmusic .relatedartists .relatedartist p {
     text-align: start;
@@ -291,7 +363,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
+} */
 
 .artistpage .artistmusic .albums {
     display: flex;
@@ -430,6 +502,1287 @@
     background-color: rgb(225, 59, 59);
 }
 
+@media (min-width: 0px) {
+    .artistpage {
+        width: 100vw;
+    }
+
+    .artistpage .artistbox {
+        width: calc(100vw - 50px);
+        border-radius: 0.5vw;
+    }
+
+    .artistpage .artistbox .artistinfo {
+        gap: 2vw;
+        padding: 10vw 2vw 7vw 2vw;
+        width: calc(100vw - 50px);
+    }
+
+    .artistpage .artistinfo .image {
+        height: 22vw;
+        width: 22vw;
+        font-size: 6vw;
+    }
+
+    .artistpage .artistinfo .name {
+        font-size: 20px;
+        width: 45vw;
+    }
+    
+    .artistpage .artistinfo .followers {
+        font-size: 12px;
+    }
+    
+    .artistpage .artistinfo .popularity {
+        right: 2vw;
+        gap: 0.25vw;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity {
+        gap: 0.25vw;
+        font-size: 24px;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity i {
+        font-size: 16px;
+    }
+    
+    .artistpage .artistinfo .popularity .added {
+        font-size: 8px;
+    }
+    
+    .artistpage .artistinfo .popularity .added .addedpopularity {
+        gap: 0.1vw;
+        font-size: 8px;
+    }
+
+    .artistpage .artistinfo .popularity .added .addedpopularity i {
+        font-size: 8px;
+    }
+    
+    .artistpage .artistbox .artistinfo .otherbuttons {
+        margin-top: 0.5vw;
+        gap: 10px;
+    }
+    
+    .artistpage .artistbox .artistinfo .add {
+        font-size: 10px;
+        gap: 0.5vw;
+        padding: 5px 10px;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .remove {
+        font-size: 10px;
+        gap: 0.5vw;
+        padding: 5px 10px;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .spotify {
+        font-size: 20px;
+        padding: 0.25vw;
+    }
+
+    .artistpage .artistmusic {
+        gap: 5vw;
+        padding: 1vw 2vw 2vw 2vw;
+        width: calc(100vw - 12vw + 4vw);
+        /* border: 1px dotted blue; */
+    }
+    
+    .artistpage .artistmusic .collection {
+        gap: 2vw;
+        /* border: 1px dotted orange; */
+    }
+    
+    .artistpage .artistmusic .collection .title {
+        font-size: 20px;
+    }
+    
+    .artistpage .artistmusic .toptracks {
+        width: calc(100vw - 12vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 0.5vw;
+    }
+
+    .artistpage .artistmusic .relatedartists {
+        width: calc(100vw - 12vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 1vw;
+        /* border: 1px dotted red; */
+    }
+    
+    .artistpage .artistmusic .toptracks .track {
+        gap: 1.5vw;
+        font-size: 14px;
+        width: calc(100vw - 12vw);
+        height: 12vw;
+        aspect-ratio: 1 / 1;
+        padding: 2vw;
+        border-radius: 1vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist {
+        gap: 1vw;
+        font-size: 12px;
+        /* width: calc((100vw - 275px - 7.5vw)/); */
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        padding: 1.5vw;
+        border-radius: 1vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        width: 10vw;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        width: calc((100vw - 9vw)/4.8);
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist p {
+        width: calc((100vw - 9vw)/4.8);
+    }
+    
+    .artistpage .artistmusic .toptracks .track .link,
+    .artistpage .artistmusic .albums .album .link {
+        /* top: 0.75vw; */
+        right: 1vw;
+        font-size: 20px;
+        border-radius: 50%;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        border-radius: 2.5%;
+    }
+    
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        border-radius: 50%;
+    }
+
+    .artistpage .artistmusic .toptracks .track .info {
+        gap: 1.5vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .name {
+        width: 35vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .album.name {
+        display: none;
+    }
+}
+
+@media (min-width: 500px) {
+    .artistpage {
+        width: 100vw;
+    }
+
+    .artistpage .artistbox {
+        width: calc(100vw - 50px);
+        border-radius: 0.5vw;
+    }
+
+    .artistpage .artistbox .artistinfo {
+        gap: 2vw;
+        padding: 8vw 2vw 5vw 2vw;
+        width: calc(100vw - 50px);
+    }
+
+    .artistpage .artistinfo .image {
+        height: 19vw;
+        width: 19vw;
+        font-size: 6vw;
+    }
+
+    .artistpage .artistinfo .name {
+        font-size: 30px;
+        width: 50vw;
+    }
+    
+    .artistpage .artistinfo .followers {
+        font-size: 12px;
+    }
+    
+    .artistpage .artistinfo .popularity {
+        right: 2vw;
+        gap: 0.25vw;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity {
+        gap: 0.25vw;
+        font-size: 30px;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity i {
+        font-size: 20px;
+    }
+    
+    .artistpage .artistinfo .popularity .added {
+        font-size: 10px;
+    }
+    
+    .artistpage .artistinfo .popularity .added .addedpopularity {
+        gap: 0.1vw;
+        font-size: 10px;
+    }
+
+    .artistpage .artistinfo .popularity .added .addedpopularity i {
+        font-size: 10px;
+    }
+    
+    .artistpage .artistbox .artistinfo .otherbuttons {
+        margin-top: 0.5vw;
+        gap: 1.5vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .add {
+        font-size: 14px;
+        gap: 0.5vw;
+        padding: 7.5px 15px;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .remove {
+        font-size: 12px;
+        gap: 0.5vw;
+        padding: 7.5px 15px;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .spotify {
+        font-size: 20px;
+        padding: 0.25vw;
+    }
+
+    .artistpage .artistmusic {
+        gap: 5vw;
+        padding: 1vw 2vw 2vw 2vw;
+        width: calc(100vw - 9vw + 4vw);
+        /* border: 1px dotted blue; */
+    }
+    
+    .artistpage .artistmusic .collection {
+        gap: 2vw;
+        /* border: 1px dotted orange; */
+    }
+    
+    .artistpage .artistmusic .collection .title {
+        font-size: 24px;
+    }
+    
+    .artistpage .artistmusic .toptracks {
+        width: calc(100vw - 9vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 0.5vw;
+    }
+
+    .artistpage .artistmusic .relatedartists {
+        width: calc(100vw - 9vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 1vw;
+        /* border: 1px dotted red; */
+    }
+    
+    .artistpage .artistmusic .toptracks .track {
+        gap: 1.5vw;
+        font-size: 14px;
+        width: calc(100vw - 9vw);
+        height: 9vw;
+        aspect-ratio: 1 / 1;
+        padding: 2vw;
+        border-radius: 1vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist {
+        gap: 1vw;
+        font-size: 14px;
+        /* width: calc((100vw - 275px - 7.5vw)/); */
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        padding: 1.5vw;
+        border-radius: 1vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        width: 7vw;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        width: calc((100vw - 9vw)/6);
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist p {
+        width: calc((100vw - 9vw)/6);
+    }
+    
+    .artistpage .artistmusic .toptracks .track .link,
+    .artistpage .artistmusic .albums .album .link {
+        /* top: 0.75vw; */
+        right: 1vw;
+        font-size: 20px;
+        border-radius: 50%;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        border-radius: 2.5%;
+    }
+    
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        border-radius: 50%;
+    }
+
+    .artistpage .artistmusic .toptracks .track .info {
+        gap: 1.5vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .name {
+        width: 15vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .album.name {
+        display: inline;
+        width: 20vw;
+        margin: 0 2vw;
+    }
+}
+
+@media (min-width: 600px) {
+    .artistpage {
+        width: 100vw;
+    }
+
+    .artistpage .artistbox {
+        width: calc(100vw - 50px);
+        border-radius: 0.5vw;
+    }
+
+    .artistpage .artistbox .artistinfo {
+        gap: 2vw;
+        padding: 6vw 2vw 3vw 2vw;
+        width: calc(100vw - 50px);
+    }
+
+    .artistpage .artistinfo .image {
+        height: 19vw;
+        width: 19vw;
+        font-size: 6vw;
+    }
+
+    .artistpage .artistinfo .name {
+        font-size: 32px;
+        width: 50vw;
+    }
+    
+    .artistpage .artistinfo .followers {
+        font-size: 12px;
+    }
+    
+    .artistpage .artistinfo .popularity {
+        right: 2vw;
+        gap: 0.25vw;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity {
+        gap: 0.25vw;
+        font-size: 36px;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity i {
+        font-size: 26px;
+    }
+    
+    .artistpage .artistinfo .popularity .added {
+        font-size: 10px;
+    }
+    
+    .artistpage .artistinfo .popularity .added .addedpopularity {
+        gap: 0.1vw;
+        font-size: 10px;
+    }
+
+    .artistpage .artistinfo .popularity .added .addedpopularity i {
+        font-size: 10px;
+    }
+    
+    .artistpage .artistbox .artistinfo .otherbuttons {
+        margin-top: 0.5vw;
+        gap: 1vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .add {
+        font-size: 14px;
+        gap: 0.5vw;
+        padding: 7.5px 15px;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .remove {
+        font-size: 12px;
+        gap: 0.5vw;
+        padding: 7.5px 15px;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .spotify {
+        font-size: 20px;
+        padding: 0.25vw;
+    }
+
+    .artistpage .artistmusic {
+        gap: 3vw;
+        padding: 1vw 2vw 2vw 2vw;
+        width: calc(100vw - 9vw + 4vw);
+        /* border: 1px dotted blue; */
+    }
+    
+    .artistpage .artistmusic .collection {
+        gap: 3vw;
+        /* border: 1px dotted orange; */
+    }
+    
+    .artistpage .artistmusic .collection .title {
+        font-size: 24px;
+    }
+    
+    .artistpage .artistmusic .toptracks {
+        width: calc(100vw - 9vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 0.5vw;
+    }
+
+    .artistpage .artistmusic .relatedartists {
+        width: calc(100vw - 9vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 1vw;
+        /* border: 1px dotted red; */
+    }
+    
+    .artistpage .artistmusic .toptracks .track {
+        gap: 1.5vw;
+        font-size: 14px;
+        width: calc(100vw - 9vw);
+        height: 9vw;
+        aspect-ratio: 1 / 1;
+        padding: 2vw;
+        border-radius: 1vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist {
+        gap: 1vw;
+        font-size: 14px;
+        /* width: calc((100vw - 275px - 7.5vw)/); */
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        padding: 1.5vw;
+        border-radius: 1vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        width: 7vw;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        width: calc((100vw - 9vw)/6);
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist p {
+        width: calc((100vw - 9vw)/6);
+    }
+    
+    .artistpage .artistmusic .toptracks .track .link,
+    .artistpage .artistmusic .albums .album .link {
+        /* top: 0.75vw; */
+        right: 1vw;
+        font-size: 20px;
+        border-radius: 50%;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        border-radius: 2.5%;
+    }
+    
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        border-radius: 50%;
+    }
+
+    .artistpage .artistmusic .toptracks .track .info {
+        gap: 1.5vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .name {
+        width: 15vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .album.name {
+        width: 20vw;
+        margin: 0 2vw;
+    }
+}
+
+@media (min-width: 800px) {
+    .artistpage {
+        width: calc(100vw - 275px);
+    }
+
+    .artistpage .artistbox {
+        width: calc(100vw - 275px - 50px);
+        border-radius: 0.5vw;
+    }
+
+    .artistpage .artistbox .artistinfo {
+        gap: 2vw;
+        padding: 4vw 2vw 3vw 2vw;
+        width: calc(100vw - 275px - 50px);
+    }
+
+    .artistpage .artistinfo .image {
+        height: 17vw;
+        width: 17vw;
+        font-size: 6vw;
+    }
+
+    .artistpage .artistinfo .name {
+        font-size: 36px;
+        width: 30vw;
+    }
+    
+    .artistpage .artistinfo .followers {
+        font-size: 12px;
+    }
+    
+    .artistpage .artistinfo .popularity {
+        right: 2vw;
+        gap: 0.25vw;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity {
+        gap: 0.25vw;
+        font-size: 32px;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity i {
+        font-size: 24px;
+    }
+    
+    .artistpage .artistinfo .popularity .added {
+        font-size: 10px;
+    }
+    
+    .artistpage .artistinfo .popularity .added .addedpopularity {
+        gap: 0.1vw;
+        font-size: 10px;
+    }
+
+    .artistpage .artistinfo .popularity .added .addedpopularity i {
+        font-size: 10px;
+    }
+    
+    .artistpage .artistbox .artistinfo .otherbuttons {
+        margin-top: 0.5vw;
+        gap: 1vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .add {
+        font-size: 14px;
+        gap: 0.5vw;
+        padding: 7.5px 15px;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .remove {
+        font-size: 12px;
+        gap: 0.5vw;
+        padding: 7.5px 15px;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .spotify {
+        font-size: 20px;
+        padding: 0.25vw;
+    }
+
+    .artistpage .artistmusic {
+        gap: 3vw;
+        padding: 1vw 2vw 2vw 2vw;
+        width: calc(100vw - 275px - 7.5vw + 4vw);
+        /* border: 1px dotted blue; */
+    }
+    
+    .artistpage .artistmusic .collection {
+        gap: 2vw;
+        /* border: 1px dotted orange; */
+    }
+    
+    .artistpage .artistmusic .collection .title {
+        font-size: 24px;
+    }
+    
+    .artistpage .artistmusic .toptracks {
+        width: calc(100vw - 275px - 7.5vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 0.5vw;
+    }
+
+    .artistpage .artistmusic .relatedartists {
+        width: calc(100vw - 275px - 7.5vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 1vw;
+        /* border: 1px dotted red; */
+    }
+    
+    .artistpage .artistmusic .toptracks .track {
+        gap: 1.5vw;
+        font-size: 14px;
+        width: calc(100vw - 275px - 7.5vw);
+        height: 7vw;
+        aspect-ratio: 1 / 1;
+        padding: 1vw;
+        border-radius: 0.5vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist {
+        gap: 1vw;
+        font-size: 14px;
+        /* width: calc((100vw - 275px - 7.5vw)/); */
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        padding: 1.5vw;
+        border-radius: 0.5vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        width: 5vw;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        width: calc((100vw - 275px - 7.5vw)/5.05);
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist p {
+        width: calc((100vw - 275px - 7.5vw)/5.05);
+    }
+    
+    .artistpage .artistmusic .toptracks .track .link,
+    .artistpage .artistmusic .albums .album .link {
+        /* top: 0.75vw; */
+        right: 1vw;
+        font-size: 1.5vw;
+        border-radius: 50%;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        border-radius: 2.5%;
+    }
+    
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        border-radius: 50%;
+    }
+
+    .artistpage .artistmusic .toptracks .track .info {
+        gap: 1.5vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .name {
+        width: 15vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .album.name {
+        width: 20vw;
+        margin: 0 2vw;
+    }
+}
+
+@media (min-width: 1000px) {
+    .artistpage {
+        width: calc(100vw - 275px);
+    }
+
+    .artistpage .artistbox {
+        width: calc(100vw - 275px - 50px);
+        border-radius: 0.5vw;
+    }
+
+    .artistpage .artistbox .artistinfo {
+        gap: 2vw;
+        padding: 4vw 2vw 3vw 2vw;
+        width: calc(100vw - 275px - 50px);
+    }
+
+    .artistpage .artistinfo .image {
+        height: 15vw;
+        width: 15vw;
+        font-size: 6vw;
+    }
+
+    .artistpage .artistinfo .name {
+        font-size: 48px;
+        width: 37.5vw;
+    }
+    
+    .artistpage .artistinfo .followers {
+        font-size: 14px;
+    }
+    
+    .artistpage .artistinfo .popularity {
+        right: 2vw;
+        gap: 0.25vw;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity {
+        gap: 0.25vw;
+        font-size: 42px;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity i {
+        font-size: 36px;
+    }
+    
+    .artistpage .artistinfo .popularity .added {
+        font-size: 12px;
+    }
+    
+    .artistpage .artistinfo .popularity .added .addedpopularity {
+        gap: 0.1vw;
+        font-size: 12px;
+    }
+
+    .artistpage .artistinfo .popularity .added .addedpopularity i {
+        font-size: 10px;
+    }
+    
+    .artistpage .artistbox .artistinfo .otherbuttons {
+        margin-top: 0.5vw;
+        gap: 1vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .add {
+        font-size: 14px;
+        gap: 0.5vw;
+        padding: 7.5px 15px;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .remove {
+        font-size: 12px;
+        gap: 0.5vw;
+        padding: 7.5px 15px;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .spotify {
+        font-size: 20px;
+        padding: 0.25vw;
+    }
+
+    .artistpage .artistmusic {
+        gap: 3vw;
+        padding: 1vw 2vw 2vw 2vw;
+        width: calc(100vw - 275px - 50px);
+        /* border: 1px dotted blue; */
+    }
+    
+    .artistpage .artistmusic .collection {
+        gap: 1vw;
+        /* border: 1px dotted orange; */
+    }
+    
+    .artistpage .artistmusic .collection .title {
+        font-size: 24px;
+    }
+    
+    .artistpage .artistmusic .toptracks {
+        width: calc(100vw - 275px - 7.5vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 0.5vw;
+    }
+
+    .artistpage .artistmusic .relatedartists {
+        width: calc(100vw - 275px - 7.5vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 1vw;
+        /* border: 1px dotted red; */
+    }
+    
+    .artistpage .artistmusic .toptracks .track {
+        gap: 1.5vw;
+        font-size: 14px;
+        width: calc(100vw - 275px - 7.5vw);
+        height: 5vw;
+        aspect-ratio: 1 / 1;
+        padding: 1%;
+        border-radius: 0.5vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist {
+        gap: 1vw;
+        font-size: 14px;
+        width: calc((100vw - 275px - 7.5vw)/4);
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        padding: 1.5vw;
+        border-radius: 0.5vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        width: 3vw;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        width: calc((100vw - 275px - 7.5vw)/6.45);
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist p {
+        width: calc((100vw - 275px - 7.5vw)/9.7);
+    }
+    
+    .artistpage .artistmusic .toptracks .track .link,
+    .artistpage .artistmusic .albums .album .link {
+        /* top: 0.75vw; */
+        right: 0.75vw;
+        font-size: 1.5vw;
+        border-radius: 50%;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        border-radius: 2.5%;
+    }
+    
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        border-radius: 50%;
+    }
+
+    .artistpage .artistmusic .toptracks .track .info {
+        gap: 1.5vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .name {
+        width: 15vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .album.name {
+        width: 20vw;
+        margin: 0 2vw;
+    }
+}
+
+@media (min-width: 1200px) {
+    .artistpage {
+        width: calc(100vw - 275px);
+    }
+
+    .artistpage .artistbox {
+        width: calc(100vw - 275px - 50px);
+        border-radius: 0.5vw;
+    }
+
+    .artistpage .artistbox .artistinfo {
+        gap: 2vw;
+        padding: 4vw 2vw 2vw 2vw;
+        width: calc(100vw - 275px - 50px);
+    }
+
+    .artistpage .artistinfo .image {
+        height: 13vw;
+        width: 13vw;
+        font-size: 6vw;
+    }
+
+    .artistpage .artistinfo .name {
+        font-size: 52px;
+        width: 45vw;
+    }
+    
+    .artistpage .artistinfo .followers {
+        font-size: 14px;
+    }
+    
+    .artistpage .artistinfo .popularity {
+        right: 2vw;
+        gap: 0.25vw;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity {
+        gap: 0.25vw;
+        font-size: 42px;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity i {
+        font-size: 36px;
+    }
+    
+    .artistpage .artistinfo .popularity .added {
+        font-size: 12px;
+    }
+    
+    .artistpage .artistinfo .popularity .added .addedpopularity {
+        gap: 0.1vw;
+        font-size: 12px;
+    }
+
+    .artistpage .artistinfo .popularity .added .addedpopularity i {
+        font-size: 10px;
+    }
+    
+    .artistpage .artistbox .artistinfo .otherbuttons {
+        margin-top: 0.5vw;
+        gap: 0.5vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .add {
+        font-size: 14px;
+        gap: 0.5vw;
+        padding: 7.5px 15px;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .remove {
+        font-size: 12px;
+        gap: 0.5vw;
+        padding: 7.5px 15px;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .spotify {
+        font-size: 20px;
+        padding: 0.25vw;
+    }
+
+    .artistpage .artistmusic {
+        gap: 2vw;
+        padding: 1vw 2vw 2vw 2vw;
+        width: calc(100vw - 275px - 50px);
+        /* border: 1px dotted blue; */
+    }
+    
+    .artistpage .artistmusic .collection {
+        gap: 1vw;
+        /* border: 1px dotted orange; */
+    }
+    
+    .artistpage .artistmusic .collection .title {
+        font-size: 24px;
+    }
+    
+    .artistpage .artistmusic .toptracks {
+        width: calc(100vw - 275px - 7.5vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 0.5vw;
+    }
+
+    .artistpage .artistmusic .relatedartists {
+        width: calc(100vw - 275px - 7.5vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 1vw;
+        /* border: 1px dotted red; */
+    }
+    
+    .artistpage .artistmusic .toptracks .track {
+        gap: 1.5vw;
+        font-size: 14px;
+        width: calc(100vw - 275px - 7.5vw);
+        height: 5vw;
+        aspect-ratio: 1 / 1;
+        padding: 1%;
+        border-radius: 0.5vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist {
+        gap: 1vw;
+        font-size: 14px;
+        width: calc((100vw - 275px - 7.5vw)/7);
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        padding: 1.5vw;
+        border-radius: 0.5vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        width: 3vw;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        width: calc((100vw - 275px - 7.5vw)/9.7);
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist p {
+        width: calc((100vw - 275px - 7.5vw)/9.7);
+    }
+    
+    .artistpage .artistmusic .toptracks .track .link,
+    .artistpage .artistmusic .albums .album .link {
+        /* top: 0.75vw; */
+        right: 0.75vw;
+        font-size: 1.5vw;
+        border-radius: 50%;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        border-radius: 2.5%;
+    }
+    
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        border-radius: 50%;
+    }
+
+    .artistpage .artistmusic .toptracks .track .info {
+        gap: 1.5vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .name {
+        width: 15vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .album.name {
+        width: 20vw;
+        margin: 0 2vw;
+    }
+}
+
+@media (min-width: 1500px) {
+    .artistpage {
+        width: calc(100vw - 275px);
+    }
+
+    .artistpage .artistbox {
+        width: calc(100vw - 275px - 50px);
+        border-radius: 0.5vw;
+    }
+
+    .artistpage .artistbox .artistinfo {
+        gap: 2vw;
+        padding: 3vw 2vw 1vw 2vw;
+        width: calc(100vw - 275px - 50px);
+    }
+
+    .artistpage .artistinfo .image {
+        height: 12vw;
+        width: 12vw;
+        font-size: 6vw;
+    }
+
+    .artistpage .artistinfo .name {
+        font-size: 60px;
+        width: 50vw;
+    }
+    
+    .artistpage .artistinfo .followers {
+        font-size: 16px;
+    }
+    
+    .artistpage .artistinfo .popularity {
+        right: 2vw;
+        gap: 0.25vw;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity {
+        gap: 0.25vw;
+        font-size: 42px;
+    }
+    
+    .artistpage .artistinfo .popularity .currentpopularity i {
+        font-size: 36px;
+    }
+    
+    .artistpage .artistinfo .popularity .added {
+        font-size: 12px;
+    }
+    
+    .artistpage .artistinfo .popularity .added .addedpopularity {
+        gap: 0.1vw;
+        font-size: 12px;
+    }
+
+    .artistpage .artistinfo .popularity .added .addedpopularity i {
+        font-size: 10px;
+    }
+    
+    .artistpage .artistbox .artistinfo .otherbuttons {
+        margin-top: 0.5vw;
+        gap: 0.5vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .add {
+        font-size: 14px;
+        gap: 0.5vw;
+        padding: 0.5vw 1vw;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .remove {
+        font-size: 14px;
+        gap: 0.5vw;
+        padding: 10px 20px;
+        border-radius: 0.25vw;
+    }
+    
+    .artistpage .artistbox .artistinfo .spotify {
+        font-size: 24px;
+        padding: 0.25vw;
+    }
+
+    .artistpage .artistmusic {
+        gap: 1vw;
+        padding: 1vw 2vw 2vw 2vw;
+        width: calc(100vw - 275px - 50px);
+        /* border: 1px dotted blue; */
+    }
+    
+    .artistpage .artistmusic .collection {
+        gap: 0.25vw;
+        /* border: 1px dotted orange; */
+    }
+    
+    .artistpage .artistmusic .collection .title {
+        font-size: 1.5vw;
+    }
+    
+    .artistpage .artistmusic .toptracks {
+        width: calc(100vw - 275px - 7.5vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 0.5vw;
+    }
+
+    .artistpage .artistmusic .relatedartists {
+        width: calc(100vw - 275px - 7.5vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 1vw;
+        /* border: 1px dotted red; */
+    }
+    
+    .artistpage .artistmusic .toptracks .track {
+        gap: 1.5vw;
+        font-size: 14px;
+        width: calc(100vw - 275px - 7.5vw);
+        height: 5vw;
+        aspect-ratio: 1 / 1;
+        padding: 1%;
+        border-radius: 0.5vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist {
+        gap: 1vw;
+        font-size: 14px;
+        width: calc((100vw - 275px - 7.5vw)/7);
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        padding: 1.5vw;
+        border-radius: 0.5vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        width: 3vw;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        width: calc((100vw - 275px - 7.5vw)/9.7);
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist p {
+        width: calc((100vw - 275px - 7.5vw)/9.7);
+    }
+    
+    .artistpage .artistmusic .toptracks .track .link,
+    .artistpage .artistmusic .albums .album .link {
+        /* top: 0.75vw; */
+        right: 0.75vw;
+        font-size: 1.5vw;
+        border-radius: 50%;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .image {
+        border-radius: 2.5%;
+    }
+    
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        border-radius: 50%;
+    }
+
+    .artistpage .artistmusic .toptracks .track .info {
+        gap: 1.5vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .name {
+        width: 15vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .album.name {
+        width: 20vw;
+        margin: 0 2vw;
+    }
+}
+
 @media (min-width: 1920px) {
     .artistpage {
         width: calc(100vw - 15vw);
@@ -441,8 +1794,13 @@
     }
 
     .artistpage .artistbox .artistinfo {
-        padding: 2vw 2vw 1vw 2vw;
+        gap: 2vw;
+        padding: 3vw 2vw 1vw 2vw;
         width: calc(100vw - 22.5vw);
+    }
+
+    .artistpage .artistinfo .sub {
+        gap: 0.75vw;
     }
 
     .artistpage .artistinfo .image {
@@ -453,6 +1811,7 @@
 
     .artistpage .artistinfo .name {
         font-size: 3vw;
+        width: 50vw;
     }
     
     .artistpage .artistinfo .followers {
@@ -511,12 +1870,15 @@
     }
 
     .artistpage .artistmusic {
-        gap: 3.5vw;
+        gap: 1vw;
         padding: 1vw 2vw 2vw 2vw;
+        width: calc(100vw - 22.5vw);
+        /* border: 1px dotted blue; */
     }
     
     .artistpage .artistmusic .collection {
-        gap: 1vw;
+        gap: 0.25vw;
+        /* border: 1px dotted orange; */
     }
     
     .artistpage .artistmusic .collection .title {
@@ -526,54 +1888,78 @@
     .artistpage .artistmusic .toptracks,
     .artistpage .artistmusic .albums,
     .artistpage .artistmusic .relatedartists {
-        /* gap: 15px; */
-        /* gap: unset; */
-        gap: 1.25vw;
-        width: 21.5vw;
-        height: 24.5vw;
+        width: calc(100vw - 27.5vw);
+        /* max-height: 12vw; */
+        gap: 0;
+        padding-top: 0.5vw;
     }
     
-    .artistpage .artistmusic .toptracks .track,
-    .artistpage .artistmusic .albums .album,
-    .artistpage .artistmusic .relatedartists .relatedartist {
-        gap: 0.5vw;
+    .artistpage .artistmusic .toptracks .track {
+        gap: 1.5vw;
         font-size: 0.75vw;
-        width: 10vw;
-        height: 11.5vw;
+        width: calc(100vw - 27.5vw);
+        height: 3.5vw;
         aspect-ratio: 1 / 1;
-        padding: 5%;
+        padding: 1%;
+        border-radius: 0.5vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist {
+        gap: 1vw;
+        font-size: 0.75vw;
+        width: 9vw;
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        padding: 1vw;
         border-radius: 0.5vw;
     }
     
-    .artistpage .artistmusic .toptracks .track .image,
-    .artistpage .artistmusic .albums .album .image,
-    .artistpage .artistmusic .relatedartists .relatedartist .image {
-        width: 100%;
+    .artistpage .artistmusic .toptracks .track .image {
+        width: 2.5vw;
         height: unset;
         aspect-ratio: 1 / 1;
         border-radius: 10%;
         font-size: 2vw;
     }
+
+    .artistpage .artistmusic .relatedartists .relatedartist .image {
+        width: 5vw;
+        height: unset;
+        aspect-ratio: 1 / 1;
+        border-radius: 10%;
+        font-size: 2vw;
+    }
+
+    .artistpage .artistmusic .relatedartists .relatedartist p {
+        width: 5vw;
+    }
     
     .artistpage .artistmusic .toptracks .track .link,
     .artistpage .artistmusic .albums .album .link {
-        top: 0.75vw;
+        /* top: 0.75vw; */
         right: 0.75vw;
         font-size: 1.5vw;
         border-radius: 50%;
     }
     
     .artistpage .artistmusic .toptracks .track .image {
-        border-radius: 50%;
+        border-radius: 2.5%;
     }
     
     .artistpage .artistmusic .relatedartists .relatedartist .image {
         border-radius: 50%;
     }
+
+    .artistpage .artistmusic .toptracks .track .info {
+        gap: 1.5vw;
+    }
     
-    .artistpage .artistmusic .toptracks .track p,
-    .artistpage .artistmusic .albums .album p,
-    .artistpage .artistmusic .relatedartists .relatedartist p {
-        max-width: 100%;
+    .artistpage .artistmusic .toptracks .track .name {
+        width: 15vw;
+    }
+    
+    .artistpage .artistmusic .toptracks .track .album.name {
+        width: 20vw;
+        margin: 0 2vw;
     }
 }
