@@ -30,12 +30,20 @@ function Sidebar(props) {
         }
         else {
             let artists = JSON.parse(JSON.stringify(props.user.artists));
-            artists.sort((a, b) => (a.score - a.originalscore) - (b.score - b.originalscore))
-            setWorst(artists[0].artistid);
-            setTop(artists[artists.length-1].artistid);
-            setScores([artists[0].score - artists[0].originalscore, artists[artists.length-1].score - artists[artists.length-1].originalscore]);
+            if (artists.length > 0) {
+                artists.sort((a, b) => (a.score - a.originalscore) - (b.score - b.originalscore))
+                if (artists.length === 1) {
+                    setTop(artists[0].artistid);
+                    setScores([artists[0].score - artists[0].originalscore, artists[artists.length-1].score - artists[artists.length-1].originalscore]);
+                }
+                else {
+                    setWorst(artists[0].artistid);
+                    setTop(artists[artists.length-1].artistid);
+                    setScores([artists[0].score - artists[0].originalscore, artists[artists.length-1].score - artists[artists.length-1].originalscore]);
+                }
+            }
         }
-    }, [token])
+    }, [props.user, token])
 
     async function getAccessToken() {
         try {
@@ -124,7 +132,7 @@ function Sidebar(props) {
             </div>
             <div className="nav-list">
                 <div className="artists">
-                    <label className="title">WATCHLIST</label>
+                    {topArtist ? <label className="title">WATCHLIST</label> : null}
                     {topArtist ? <div className="artist" onClick={() => clickArtist(topArtist.id)}>
                         <span className="info">
                             {topArtist.images.length ? <img className="image" src={topArtist.images[0].url} alt={topArtist.name}/> : <i className="fa-solid fa-user image"></i>}

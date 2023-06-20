@@ -1,0 +1,13 @@
+.Settings {
+    display: flex;
+    height: 100vh;
+    padding: 25px;
+    gap: 25px;
+}
+
+.Settings .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
