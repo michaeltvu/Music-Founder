@@ -529,7 +529,7 @@
     .userpage .usermusic .artists .artist .score {
         gap: 0.25vw;
         top: 3vw;
-        right: 2vw;
+        right: 3vw;
         font-size: 12px;
     }
     
@@ -689,7 +689,7 @@
     .userpage .usermusic .artists .artist .score {
         gap: 0.25vw;
         top: 2vw;
-        right: 1.5vw;
+        right: 2vw;
         font-size: 12px;
     }
     
@@ -845,7 +845,7 @@
     .userpage .usermusic .artists .artist .score {
         gap: 0.25vw;
         top: 1.5vw;
-        right: 1vw;
+        right: 1.5vw;
         font-size: 12px;
     }
     
@@ -999,8 +999,8 @@
 
     .userpage .usermusic .artists .artist .score {
         gap: 0.25vw;
-        top: 1vw;
-        right: 0.75vw;
+        top: 1.25vw;
+        right: 1.25vw;
         font-size: 14px;
     }
     
@@ -1154,7 +1154,7 @@
     .userpage .usermusic .artists .artist .score {
         gap: 0.25vw;
         top: 1vw;
-        right: 0.75vw;
+        right: 1.25vw;
         font-size: 14px;
     }
     
@@ -1307,8 +1307,8 @@
 
     .userpage .usermusic .artists .artist .score {
         gap: 0.25vw;
-        top: 0.75vw;
-        right: 0.5vw;
+        top: 1vw;
+        right: 1vw;
         font-size: 14px;
     }
     
@@ -1465,8 +1465,8 @@
 
     .userpage .usermusic .artists .artist .score {
         gap: 0.25vw;
-        top: 0.75vw;
-        right: 0.5vw;
+        top: 1vw;
+        right: 1vw;
         font-size: 14px;
     }
     
