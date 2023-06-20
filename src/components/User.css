@@ -1307,8 +1307,8 @@
 
     .userpage .usermusic .artists .artist .score {
         gap: 0.25vw;
-        top: 1vw;
-        right: 1vw;
+        top: 1.5vw;
+        right: 1.5vw;
         font-size: 14px;
     }
     
@@ -1465,8 +1465,8 @@
 
     .userpage .usermusic .artists .artist .score {
         gap: 0.25vw;
-        top: 1vw;
-        right: 1vw;
+        top: 1.25vw;
+        right: 1.25vw;
         font-size: 14px;
     }
     
