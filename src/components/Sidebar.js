@@ -99,15 +99,8 @@ function Sidebar(props) {
     }
 
     const clickLink = (type) => {
-        if (page !== type || type === 'search') {
-            setPage(type);
-            if(type === 'home') {
-                navigate('/');
-            }
-            else {
-                navigate(`/${type}`);
-            }
-        }
+        setPage(type);
+        navigate(`/${type}`);
     }
 
     const clickArtist = (artistid) => {

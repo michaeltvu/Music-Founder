@@ -5,11 +5,13 @@ import Sidebar from "../Sidebar";
 import Groups from "../Groups";
 import Friends from "../Friends";
 import Artist from "../Artist";
-import User from "../User"
+import User from "../User";
+import Settings from "../Settings";
+import Main from "../Main";
 import { onAuthStateChanged } from "firebase/auth";
 import { getDoc, doc, updateDoc} from "firebase/firestore";
 import { auth, db } from '../../admin/firebase.js';
-import { Routes, useNavigate, Route, useLocation } from 'react-router-dom';
+import { Routes, useNavigate, Route, useLocation, Navigate } from 'react-router-dom';
 import axios from "axios";
 import qs from "qs";
 import { Buffer } from "buffer";
@@ -173,10 +175,13 @@ function Home() {
                     <div className="main-page">
                         {/* {mainpage} */}
                         <Routes>
+                            <Route path="/" element={<Navigate replace to="/home"/>} />
+                            <Route path="/home" element={<Main/>}/>
                             <Route path="/groups" element={<div className="social"><Groups user={user}/> <Friends user={user} refreshUser={getUser}/></div>}/>
                             <Route path="/search/*" element={<Search user={user} refreshUser={getUser}/>}/>
                             <Route path="/artist/*" element={<Artist user={user} refreshUser={getUser}/>}/>
                             <Route path="/user/*" element={<User user={user} refreshUser={getUser}/>}/>
+                            <Route path="/settings" element={<Settings/>}/>
                         </Routes>
                     </div>
                 </div>
