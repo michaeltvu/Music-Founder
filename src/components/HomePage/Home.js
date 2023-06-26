@@ -35,6 +35,7 @@ function Home() {
         else {
             onAuthStateChanged(auth, (user) => {
                 if (user) {
+                    console.log(user.displayName)
                     getUser(user.uid);
                     // updateArtists(user.uid);
                 } else {
@@ -181,7 +182,7 @@ function Home() {
                             <Route path="/search/*" element={<Search user={user} refreshUser={getUser}/>}/>
                             <Route path="/artist/*" element={<Artist user={user} refreshUser={getUser}/>}/>
                             <Route path="/user/*" element={<User user={user} refreshUser={getUser}/>}/>
-                            <Route path="/settings" element={<Settings/>}/>
+                            <Route path="/settings" element={<Settings user={user}/>}/>
                         </Routes>
                     </div>
                 </div>

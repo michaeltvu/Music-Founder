@@ -1,13 +1,130 @@
 .Settings {
     display: flex;
     height: 100vh;
-    padding: 25px;
-    gap: 25px;
+    width: calc(100vw - 175px);
+    /* padding: 25px; */
+    /* gap: 25px; */
+    /* background-color: rgb(13, 13, 13); */
 }
 
 .Settings .menu {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     align-items: flex-start;
+    padding: 50px;
+    /* background-color: rgb(10, 10, 10); */
+}
+
+.Settings .menu .title {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.Settings .menu .option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 10px;
+    opacity: 0.5;
+    width: 210px;
+    border-radius: 10px;
+}
+
+.Settings .menu .option.selected {
+    opacity: 1;
+    color: black;
+    background-color: white;
+}
+
+.Settings .menu .option:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.Settings .menu .option .title {
+    font-size: 16px;
+    margin: 0;
+}
+
+.Settings .menu .option i {
+    font-size: 18px;
+    width: 30px;
+}
+
+.Settings hr {
+    border: 2px solid rgb(30, 30, 30);
+    height: calc(100vh - 50px);
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.Settings .main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    margin: 50px;
+}
+
+.Settings .main .title {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.Settings .main .sections {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.Settings .main .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.Settings .main .info div {
+    display: flex;
+    gap: 10px;
+}
+
+.Settings .main .info div label {
+    font-size: 20px;
+}
+
+.Settings .main .accountbuttons {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.Settings .main .accountbuttons .delete {
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+    gap: 10px;
+    background-color: rgb(197, 77, 77);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    transition: transform 0.25s;
+}
+
+.Settings .main .accountbuttons .delete:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+}
+
+.Settings .main .accountbuttons .logout {
+    font-size: 18px;
+    color:  rgb(228, 88, 88);
+    transition: transform 0.25s;
+}
+
+.Settings .main .logout:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
 }

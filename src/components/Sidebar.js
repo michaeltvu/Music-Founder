@@ -160,7 +160,8 @@ function Sidebar(props) {
                         <span className={"home link " + (page === 'home' ? "open" : "")} onClick={() => clickLink('home')}><i className="fa-solid fa-house"></i>home</span>
                         <span className={"search link " + (page === 'search' ? "open" : "")} onClick={() => clickLink('search')}><i className="fa-solid fa-magnifying-glass"></i>search</span>
                         {/* <span className={"top link " + (page === 'top' ? "open" : "")} onClick={() => clickLink('top')}><i className="fa-solid fa-chart-column"></i>top</span> */}
-                        <span className={"groups link " + (page === 'groups' ? "open" : "")} onClick={() => clickLink('groups')}><i className="fa-solid fa-users"></i>groups</span>
+                        {/* <span className={"groups link " + (page === 'groups' ? "open" : "")} onClick={() => clickLink('groups')}><i className="fa-solid fa-users"></i>groups</span> */}
+                        <span className={"inbox link " + (page === 'inbox' ? "open" : "")} onClick={() => clickLink('inbox')}><i className="fa-solid fa-envelope"></i>inbox</span>
                         <span className={"settings link " + (page === 'settings' ? "open" : "")} onClick={() => clickLink('settings')}><i className="fa-solid fa-gear"></i>settings</span>
                     </div>
                 </div>
