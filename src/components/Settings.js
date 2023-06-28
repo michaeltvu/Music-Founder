@@ -27,11 +27,11 @@ function Settings(props) {
                 <div className="sections">
                     <form className="info">
                         <div>
-                            <label htmlFor="email">Email:</label>
-                            <input type="text" id="email" name="email" value="" readOnly/><br/>
+                            <label htmlFor="email">Email</label>
+                            <input type="text" id="email" name="email" value="" readOnly/>
                         </div>
                         <div>
-                            <label htmlFor="username">Username:</label>
+                            <label htmlFor="username">Username</label>
                             <input type="text" id="lname" name="lname"/>
                         </div>
                     </form>
