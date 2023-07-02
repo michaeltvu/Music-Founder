@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from '../admin/firebase.js';
 import { Routes, useNavigate, Route, useLocation, Navigate } from 'react-router-dom';
@@ -6,6 +6,13 @@ import "./Settings.css"
 
 function Settings(props) {
     const [page, setPage] = useState('account');
+    const [backgroundColor, setBackgroundColor] = useState([35, 35, 35]);
+
+    useEffect(() => {
+        if (props.user) {
+            getPalette(props.user.username)
+        }
+    }, [props])
 
     const logOut = () => {
         signOut(auth).then(() => {
@@ -13,6 +20,11 @@ function Settings(props) {
         }).catch((error) => {
             console.log(error)
         });
+    }
+
+    const getPalette = (username) => {
+        const colors = [[103, 97, 168], [242, 100, 48], [0, 157, 220], [0, 155, 114], [42, 95, 152], [166, 212, 159], [216, 49, 91], [30, 27, 24]];
+        setBackgroundColor(colors[(username.charCodeAt(0) + username.charCodeAt(username.length-1))%8]);
     }
 
     const clickMenu = (title) => {
@@ -26,13 +38,18 @@ function Settings(props) {
                 <p className="title">Account</p>
                 <div className="sections">
                     <form className="info">
-                        <div>
-                            <label htmlFor="email">Email</label>
-                            <input type="text" id="email" name="email" value="" readOnly/>
+                        <div className="image">
+                            {props.user.img.length ? <img className="image" src={props.user.img} alt={props.user.name}/> : <i className="fa-solid fa-user image" style={{color: `rgb(${backgroundColor}, 0.5)`}}></i>}
                         </div>
-                        <div>
-                            <label htmlFor="username">Username</label>
-                            <input type="text" id="lname" name="lname"/>
+                        <div className="text">
+                            <div>
+                                <label htmlFor="email">Email</label>
+                                <input type="text" id="email" name="email" value={props.user.username} readOnly/>
+                            </div>
+                            <div>
+                                <label htmlFor="username">Username</label>
+                                <input type="text" id="lname" name="lname"/>
+                            </div>
                         </div>
                     </form>
                     <div className="accountbuttons">

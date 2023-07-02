@@ -81,9 +81,14 @@
 
 .Settings .main .info {
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
-    gap: 15px;
+    gap: 50px;
+}
+
+.Settings .main .info .image img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
 }
 
 .Settings .main .info div {
