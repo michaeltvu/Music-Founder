@@ -86,6 +86,7 @@ function Login() {
                 else {
                     const res = await createUserWithEmailAndPassword(auth, email, password)
                     const user = res.user;
+                    // user.sendEmailVerification();
                     let yourDate = new Date();
                     const date =  yourDate.toISOString().split('T')[0];
                     await setDoc(doc(db, "users", user.uid), {
@@ -100,7 +101,8 @@ function Login() {
                     await setDoc(doc(db, "usernames", username), {
                         uid: user.uid
                     })
-                    navigate("/")
+                    // auth.signOut();
+                    // navigate("/")
                 }
             }
             catch (error) {

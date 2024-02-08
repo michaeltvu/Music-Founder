@@ -44,11 +44,11 @@ function Settings(props) {
                         <div className="text">
                             <div>
                                 <label htmlFor="email">Email</label>
-                                <input type="text" id="email" name="email" value={props.user.username} readOnly/>
+                                <input type="text" id="email" name="email" value={auth.currentUser.email} readOnly/>
                             </div>
                             <div>
                                 <label htmlFor="username">Username</label>
-                                <input type="text" id="lname" name="lname"/>
+                                <input type="text" id="username" name="username" value={props.user.username} readOnly/>
                             </div>
                         </div>
                     </form>
@@ -84,14 +84,14 @@ function Settings(props) {
                     <i className="fa-solid fa-user"></i>
                     <p className="title">Account</p>
                 </span>
-                <span className={"option " + ((page === 'general') ? "selected" : "")} onClick={() => clickMenu('general')}>
+                {/* <span className={"option " + ((page === 'general') ? "selected" : "")} onClick={() => clickMenu('general')}>
                     <i className="fa-solid fa-gear"></i>
                     <p className="title">General</p>
                 </span>
                 <span className={"option " + ((page === 'accessibility') ? "selected" : "")} onClick={() => clickMenu('accessibility')}>
                     <i className="fa-solid fa-eye"></i>
                     <p className="title">Accessibility</p>
-                </span>
+                </span> */}
             </div>
             <hr/>
             {main}

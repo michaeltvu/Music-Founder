@@ -85,7 +85,11 @@
     gap: 50px;
 }
 
-.Settings .main .info .image img {
+.Settings .main .info .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 60, 60);
     height: 150px;
     width: 150px;
     border-radius: 50%;
@@ -108,6 +112,7 @@
     padding: 10px;
     border-radius: 5px;
     opacity: 0.75;
+    width: 400px;
 }
 
 .Settings .main .info div input:focus {

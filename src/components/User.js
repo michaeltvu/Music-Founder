@@ -212,7 +212,7 @@ export function Artist(props) {
                         <div className="sub">
                             <p className="name">{user.username}</p>
                             <p className="friends">{user.friends.length + (user.friends.length === 1 ? ' friend' : ' friends')}</p>
-                            {(added === -2) ? <span className="edit">Edit Profile<i className="fa-solid fa-pencil"></i></span> : (added !== -1) ? <span className="remove">Remove Friend<i className="fa-solid fa-xmark"></i></span> : <span className="add" onClick={addFriend}>Add Friend <i className="fa-solid fa-plus"></i></span> }
+                            {(added === -2) ? <span className="edit">Account Settings<i className="fa-solid fa-gear"></i></span> : (added !== -1) ? <span className="remove">Remove Friend<i className="fa-solid fa-xmark"></i></span> : <span className="add" onClick={addFriend}>Add Friend <i className="fa-solid fa-plus"></i></span> }
                         </div>
                     </div>
                     {/* <hr style={{border: `3px solid rgb(${backgroundColor}, 0.5)`}}/> */}

@@ -35,7 +35,6 @@ function Home() {
         else {
             onAuthStateChanged(auth, (user) => {
                 if (user) {
-                    console.log(user.displayName)
                     getUser(user.uid);
                     // updateArtists(user.uid);
                 } else {
